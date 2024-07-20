@@ -78,7 +78,7 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
         <div className="flex justify-center space-x-4">
           <button
             onClick={() => onAddToCart(dish, quantity)}
-            className="bg-[#D2B48C] text-white px-8 py-2 rounded-full hover:bg-[#8B4513] transition-colors duration-300"
+            className="bg-[#8B4513] text-white px-8 py-2 rounded-full hover:bg-[#632d00] transition-colors duration-300"
           >
             Add to Cart
           </button>
