@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../layouts/Button";
 import { useInView } from 'react-intersection-observer';
-// import "../css/HomePageAnimate.css"
+import "../css/HomePageAnimate.css"
 
 const Home = () => {
   const { ref: titleRef, inView: titleInView } = useInView({
