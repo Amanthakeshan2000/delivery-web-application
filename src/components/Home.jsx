@@ -20,7 +20,7 @@ const Home = () => {
       <div className="w-full lg:w-2/3 space-y-5 text-center">
         <h1
           ref={titleRef}
-          className={`text-white font-semibold text-6xl drop-shadow-lg ${
+          className={`text-white font-semibold text-5xl drop-shadow-lg ${
             titleInView ? 'animate-fadeInDown' : 'opacity-0'
           }`}
         >
