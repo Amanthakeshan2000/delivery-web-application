@@ -1,9 +1,11 @@
 import React from "react";
 
-const Button = (props) => {
+const Button = ({ title, className, onClick }) => {
   return (
     <div>
-    <button className="
+      <button
+        className={`
+  
     px-20 py-3
     drop-shadow-lg
     border-0 
@@ -14,11 +16,14 @@ const Button = (props) => {
     hover:text-white 
     transition-all 
     font-semibold
-    rounded-full">
-      {props.title}
-    </button>
-  </div>
-  
+    rounded-full
+          ${className}
+        `}
+        onClick={onClick}
+      >
+        {title}
+      </button>
+    </div>
   );
 };
 
