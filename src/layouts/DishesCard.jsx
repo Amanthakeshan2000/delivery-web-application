@@ -48,7 +48,7 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
               />
               <span className="ml-2 text-lg">Select 02</span>
             </label>
-            <label className="flex items-center cursor-pointer">
+            {/* <label className="flex items-center cursor-pointer">
               <input
                 type="checkbox"
                 name="selection"
@@ -57,7 +57,7 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
                 onChange={() => handleCheckboxChange("03")}
               />
               <span className="ml-2 text-lg">Select 03</span>
-            </label>
+            </label> */}
           </div>
           <div className="flex justify-center items-center space-x-4 mb-4">
             <button
