@@ -24,7 +24,7 @@ const About = () => {
           Our menu is curated to tantalize your taste buds with flavors from the North to the South and East to the West of the Island nation Sri Lanka.
         </p>
         <div className="flex justify-center lg:justify-start">
-          <Button title="Learn More" className="bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-300" />
+          <Button title="Learn More" className="bg-blue-600 text-black hover:bg-blue-700 transition-colors duration-300" />
         </div>
       </div>
     </div>
