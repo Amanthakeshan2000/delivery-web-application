@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../layouts/Button";
 
-const Popup = ({ dish, onClose }) => (
+const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
     <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4 relative animate-slide-up">
       <button
@@ -20,12 +20,27 @@ const Popup = ({ dish, onClose }) => (
       <div className="flex justify-center mb-4">
         <h3 className="font-semibold text-lg text-gray-700">{dish.price}</h3>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center items-center space-x-4 mb-4">
         <button
-          onClick={onClose}
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-300"
+          onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
+          className="bg-[#d47d00] text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#C19A6B] transition-colors duration-300"
         >
-          Close
+          -
+        </button>
+        <span className="text-lg font-semibold">{quantity}</span>
+        <button
+          onClick={() => setQuantity(quantity + 1)}
+          className="bg-[#864f00] text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#A0522D] transition-colors duration-300"
+        >
+          +
+        </button>
+      </div>
+      <div className="flex justify-center space-x-4">
+        <button
+          onClick={() => onAddToCart(dish, quantity)}
+          className="bg-[#D2B48C] text-white px-8 py-2 rounded-full hover:bg-[#8B4513] transition-colors duration-300"
+        >
+          Add to Cart
         </button>
       </div>
     </div>
@@ -34,12 +49,18 @@ const Popup = ({ dish, onClose }) => (
 
 const DishesCard = (props) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddClick = () => {
     setIsPopupVisible(true);
   };
 
   const handleClosePopup = () => {
+    setIsPopupVisible(false);
+  };
+
+  const handleAddToCart = (dish, quantity) => {
+    console.log(`Added ${quantity} of ${dish.title} to cart`);
     setIsPopupVisible(false);
   };
 
@@ -74,7 +95,10 @@ const DishesCard = (props) => {
             description: "Seeni sambol, coconut sambol, katta sambol and curry leaf sambol with a basket of papadums",
             price: props.price,
           }}
+          quantity={quantity}
+          setQuantity={setQuantity}
           onClose={handleClosePopup}
+          onAddToCart={handleAddToCart}
         />
       )}
     </>
