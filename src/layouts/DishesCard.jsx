@@ -10,8 +10,8 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
   };
 
   return (
-    <div className="popup-container">
-      <div className="popup-box">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4 sm:mx-2 relative animate-slide-up mt-4 overflow-y-auto max-h-[90vh]">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-white bg-[#7a0000] hover:bg-red-700 rounded-full w-8 h-8 flex items-center justify-center transition-colors duration-300"
@@ -57,26 +57,6 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
               />
               <span className="ml-2 text-lg">Select 03</span>
             </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="03"
-                checked={selectedOption === "03"}
-                onChange={() => handleCheckboxChange("03")}
-              />
-              <span className="ml-2 text-lg">Select 03</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="03"
-                checked={selectedOption === "03"}
-                onChange={() => handleCheckboxChange("03")}
-              />
-              <span className="ml-2 text-lg">Select 03</span>
-            </label>
           </div>
           <div className="flex justify-center items-center space-x-4 mb-4">
             <button
@@ -110,6 +90,8 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
 const DishesCard = (props) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [messageAlignment, setMessageAlignment] = useState("center"); // "center", "left", "right"
 
   useEffect(() => {
     if (isPopupVisible) {
@@ -133,6 +115,8 @@ const DishesCard = (props) => {
   const handleAddToCart = (dish, quantity) => {
     console.log(`Added ${quantity} of ${dish.title} to cart`);
     setIsPopupVisible(false);
+    setSuccessMessage(`Successfully added ${quantity} of ${dish.title} to cart!`);
+    setTimeout(() => setSuccessMessage(""), 6000); // Clear message after 3 seconds
   };
 
   return (
@@ -152,7 +136,7 @@ const DishesCard = (props) => {
             <h3 className="font-semibold text-lg text-gray-700">{props.price}</h3>
             <Button
               title="Add"
-              className="bg-blue-600 text-black hover:bg-blue-700 transition-colors duration-300"
+              className="bg-red-200 text-black hover:bg-red-500 transition-colors duration-300"
               onClick={handleAddClick}
             />
           </div>
@@ -171,6 +155,12 @@ const DishesCard = (props) => {
           onClose={handleClosePopup}
           onAddToCart={handleAddToCart}
         />
+      )}
+      {successMessage && (
+        <div className={`success-message ${messageAlignment}`}>
+          <span>&#10004;</span> {/* Check mark */}
+          {successMessage}
+        </div>
       )}
     </>
   );
