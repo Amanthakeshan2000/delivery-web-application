@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../layouts/Button";
 import "../css/animate-slide-up.css";
 
 const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleRadioChange = (value) => {
+  const handleCheckboxChange = (value) => {
     setSelectedOption(selectedOption === value ? null : value);
   };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4 sm:mx-2 relative animate-slide-up mt-4 overflow-y-auto max-h-[90vh] bg-light-blue">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4 sm:mx-2 relative animate-slide-up mt-4 overflow-y-auto max-h-[90vh]">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-white bg-[#FF0000] hover:bg-red-700 rounded-full w-8 h-8 flex items-center justify-center transition-colors duration-300"
@@ -26,34 +26,34 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
         />
         <p className="mb-4 text-center">{dish.description}</p>
         <div className="mb-4">
-          <div className="flex flex-col space-y-3 mb-4 custom-radio">
+          <div className="flex flex-col space-y-3 mb-4 custom-checkbox">
             <label className="flex items-center cursor-pointer">
               <input
-                type="radio"
+                type="checkbox"
                 name="selection"
                 value="01"
                 checked={selectedOption === "01"}
-                onChange={() => handleRadioChange("01")}
+                onChange={() => handleCheckboxChange("01")}
               />
               <span className="ml-2 text-lg">Select 01</span>
             </label>
             <label className="flex items-center cursor-pointer">
               <input
-                type="radio"
+                type="checkbox"
                 name="selection"
                 value="02"
                 checked={selectedOption === "02"}
-                onChange={() => handleRadioChange("02")}
+                onChange={() => handleCheckboxChange("02")}
               />
               <span className="ml-2 text-lg">Select 02</span>
             </label>
             <label className="flex items-center cursor-pointer">
               <input
-                type="radio"
+                type="checkbox"
                 name="selection"
                 value="03"
                 checked={selectedOption === "03"}
-                onChange={() => handleRadioChange("03")}
+                onChange={() => handleCheckboxChange("03")}
               />
               <span className="ml-2 text-lg">Select 03</span>
             </label>
@@ -92,6 +92,17 @@ const DishesCard = (props) => {
   const [quantity, setQuantity] = useState(1);
   const [successMessage, setSuccessMessage] = useState("");
 
+  useEffect(() => {
+    if (isPopupVisible) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [isPopupVisible]);
+
   const handleAddClick = () => {
     setIsPopupVisible(true);
   };
@@ -106,6 +117,9 @@ const DishesCard = (props) => {
     setSuccessMessage(` Successfully added to cart!`); 
     setTimeout(() => setSuccessMessage(""), 3000); 
   };
+  
+  
+  
 
   return (
     <>
