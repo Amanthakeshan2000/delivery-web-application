@@ -80,7 +80,7 @@
   transform: translate(-50%, -50%);
 }
 
-/* Success Message Container */
+
 .success-message-container {
   position: fixed;
   top: 0;
@@ -94,48 +94,49 @@
   align-items: center;
   z-index: 9999;
   pointer-events: none;
-  transition: top 0.3s ease-in-out; /* Smooth transition */
+  transition: top 0.3s ease-in-out; 
 }
 
-/* Success Message Styling */
 .success-message {
-  background-color: #28a745; /* Existing color */
+  background-color: #28a745; 
   color: white;
   padding: 1rem 2rem;
   border-radius: 9999px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  animation: bounce 1s ease, slide-up 0.3s ease-out; /* Combined animations */
+  animation: bounce 1s ease, slide-up 0.3s ease-out; 
   max-width: 100%;
   box-sizing: border-box;
 }
+.success-message span {
+  margin-right: 10px;
+}
 
-/* Mobile View Adjustments */
 @media (max-width: 768px) {
   .success-message-container {
-    top: 10px; /* Small top margin */
-    width: calc(100% - 2rem); /* Full width with margin */
-    padding: 0 1rem; /* Padding adjustments */
+    top: 10px; 
+    width: calc(100% - 2rem); 
+    padding: 0 1rem;
   }
 
   .success-message {
-    padding: 0.75rem 1.5rem; /* Adjust padding for mobile */
-    font-size: 1rem; /* Adjust font size for mobile */
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem; 
   }
 }
 
-/* Prevent scrolling when popup is visible */
+
 .no-scroll {
   overflow: hidden;
 }
 
-/* Creative Image Animation */
+
 .success-message img {
-  margin-left: 0.75rem; /* Space between text and image */
-  width: 24px; /* Adjust image size */
-  height: 24px; /* Adjust image size */
-  animation: spin 1.5s linear infinite; /* Spinning animation */
+  margin-left: 0.75rem; 
+  width: 24px; 
+  height: 24px; 
+  animation: spin 1.5s linear infinite;
 }
 
 /* Spin Animation */

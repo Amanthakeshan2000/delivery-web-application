@@ -114,9 +114,12 @@ const DishesCard = (props) => {
   const handleAddToCart = (dish, quantity) => {
     console.log(`Added ${quantity} of ${dish.title} to cart`);
     setIsPopupVisible(false);
-    setSuccessMessage(`Successfully added to cart!`);
-    setTimeout(() => setSuccessMessage(""), 5000); 
+    setSuccessMessage(` Successfully added to cart!`); 
+    setTimeout(() => setSuccessMessage(""), 3000); 
   };
+  
+  
+  
 
   return (
     <>
