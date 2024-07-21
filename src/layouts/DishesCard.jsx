@@ -138,7 +138,7 @@ const DishesCard = (props) => {
             <h3 className="font-semibold text-lg text-gray-700">{props.price}</h3>
             <Button
               title="Add"
-              className="bg-red-200 text-black hover:bg-red-500 transition-colors duration-300"
+              className="bg-green-500 text-white hover:bg-green-800 transition-colors duration-300"
               onClick={handleAddClick}
             />
           </div>
