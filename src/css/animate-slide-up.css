@@ -76,6 +76,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
+  background-color: white; 
   transform: translate(-50%, -50%);
 }
 
@@ -89,38 +90,62 @@
   max-width: 90%;
   padding: 1rem;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
-  z-index: 9999; 
-  pointer-events: none; 
+  z-index: 9999;
+  pointer-events: none;
 }
 
-
+/* Success Message Styling */
 .success-message {
-  background-color: #28a745; 
+  background-color: #28a745; /* Existing color */
   color: white;
   padding: 1rem 2rem;
   border-radius: 9999px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  animation: bounce 1s ease; 
+  animation: bounce 1s ease, slide-up 0.3s ease-out; /* Combined animations */
   max-width: 100%;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
-
+/* Mobile View Adjustments */
 @media (max-width: 768px) {
   .success-message-container {
-    width: 100%; 
-    padding: 0 1rem; 
+    top: 10px; /* Small top margin */
+    width: calc(100% - 2rem); /* Full width with margin */
+    padding: 0 1rem; /* Padding adjustments */
   }
 
   .success-message {
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.5rem; /* Adjust padding for mobile */
+    font-size: 1rem; /* Adjust font size for mobile */
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
+/* Prevent scrolling when popup is visible */
 .no-scroll {
   overflow: hidden;
+}
+
+/* Creative Image Animation */
+.success-message img {
+  margin-left: 0.75rem; /* Space between text and image */
+  width: 24px; /* Adjust image size */
+  height: 24px; /* Adjust image size */
+  animation: spin 1.5s linear infinite; /* Spinning animation */
+}
+
+/* Spin Animation */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
