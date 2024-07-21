@@ -5,8 +5,8 @@ import "../css/animate-slide-up.css";
 const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
-  const handleCheckboxChange = (value) => {
-    setSelectedOption(selectedOption === value ? null : value);
+  const handleRadioChange = (value) => {
+    setSelectedOption(value);
   };
 
   return (
@@ -26,154 +26,34 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
         />
         <p className="mb-4 text-center">{dish.description}</p>
         <div className="mb-4">
-          <div className="flex flex-col space-y-3 mb-4 custom-checkbox">
+          <div className="flex flex-col space-y-3 mb-4 custom-radio">
             <label className="flex items-center cursor-pointer">
               <input
-                type="checkbox"
+                type="radio"
                 name="selection"
                 value="01"
                 checked={selectedOption === "01"}
-                onChange={() => handleCheckboxChange("01")}
+                onChange={() => handleRadioChange("01")}
               />
               <span className="ml-2 text-lg">Select 01</span>
             </label>
             <label className="flex items-center cursor-pointer">
               <input
-                type="checkbox"
+                type="radio"
                 name="selection"
                 value="02"
                 checked={selectedOption === "02"}
-                onChange={() => handleCheckboxChange("02")}
+                onChange={() => handleRadioChange("02")}
               />
               <span className="ml-2 text-lg">Select 02</span>
             </label>
             <label className="flex items-center cursor-pointer">
               <input
-                type="checkbox"
+                type="radio"
                 name="selection"
                 value="03"
                 checked={selectedOption === "03"}
-                onChange={() => handleCheckboxChange("03")}
-              />
-              <span className="ml-2 text-lg">Select 03</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="01"
-                checked={selectedOption === "01"}
-                onChange={() => handleCheckboxChange("01")}
-              />
-              <span className="ml-2 text-lg">Select 01</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="02"
-                checked={selectedOption === "02"}
-                onChange={() => handleCheckboxChange("02")}
-              />
-              <span className="ml-2 text-lg">Select 02</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="03"
-                checked={selectedOption === "03"}
-                onChange={() => handleCheckboxChange("03")}
-              />
-              <span className="ml-2 text-lg">Select 03</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="01"
-                checked={selectedOption === "01"}
-                onChange={() => handleCheckboxChange("01")}
-              />
-              <span className="ml-2 text-lg">Select 01</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="02"
-                checked={selectedOption === "02"}
-                onChange={() => handleCheckboxChange("02")}
-              />
-              <span className="ml-2 text-lg">Select 02</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="03"
-                checked={selectedOption === "03"}
-                onChange={() => handleCheckboxChange("03")}
-              />
-              <span className="ml-2 text-lg">Select 03</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="01"
-                checked={selectedOption === "01"}
-                onChange={() => handleCheckboxChange("01")}
-              />
-              <span className="ml-2 text-lg">Select 01</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="02"
-                checked={selectedOption === "02"}
-                onChange={() => handleCheckboxChange("02")}
-              />
-              <span className="ml-2 text-lg">Select 02</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="03"
-                checked={selectedOption === "03"}
-                onChange={() => handleCheckboxChange("03")}
-              />
-              <span className="ml-2 text-lg">Select 03</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="01"
-                checked={selectedOption === "01"}
-                onChange={() => handleCheckboxChange("01")}
-              />
-              <span className="ml-2 text-lg">Select 01</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="02"
-                checked={selectedOption === "02"}
-                onChange={() => handleCheckboxChange("02")}
-              />
-              <span className="ml-2 text-lg">Select 02</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="03"
-                checked={selectedOption === "03"}
-                onChange={() => handleCheckboxChange("03")}
+                onChange={() => handleRadioChange("03")}
               />
               <span className="ml-2 text-lg">Select 03</span>
             </label>
@@ -237,9 +117,6 @@ const DishesCard = (props) => {
     setSuccessMessage(` Successfully added to cart!`); 
     setTimeout(() => setSuccessMessage(""), 3000); 
   };
-  
-  
-  
 
   return (
     <>
