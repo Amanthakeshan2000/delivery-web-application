@@ -14,7 +14,7 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4 sm:mx-2 relative animate-slide-up mt-4 overflow-y-auto max-h-[90vh]">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-white bg-[#7a0000] hover:bg-red-700 rounded-full w-8 h-8 flex items-center justify-center transition-colors duration-300"
+          className="absolute top-2 right-2 text-white bg-[#FF0000] hover:bg-red-700 rounded-full w-8 h-8 flex items-center justify-center transition-colors duration-300"
         >
           &times;
         </button>
@@ -61,14 +61,14 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
           <div className="flex justify-center items-center space-x-4 mb-4">
             <button
               onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
-              className="bg-[#D2B48C] text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#C19A6B] transition-colors duration-300"
+              className="bg-[#009404] text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#000000] transition-colors duration-300"
             >
               -
             </button>
             <span className="text-lg font-semibold">{quantity}</span>
             <button
               onClick={() => setQuantity(quantity + 1)}
-              className="bg-[#8B4513] text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#A0522D] transition-colors duration-300"
+              className="bg-[#023020] text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-[#000000] transition-colors duration-300"
             >
               +
             </button>
@@ -77,7 +77,7 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
         <div className="flex justify-center space-x-4">
           <button
             onClick={() => onAddToCart(dish, quantity)}
-            className="bg-[#8B4513] text-white px-8 py-2 rounded-full hover:bg-[#632d00] transition-colors duration-300"
+            className="bg-[#007B03] text-white px-8 py-2 rounded-full hover:bg-[#003101] transition-colors duration-300"
           >
             Add to Cart
           </button>

@@ -8,7 +8,7 @@ export default {
         backgroundColor: "#b7bca9",
         viteGreen: '#681800',
         lightText: "#959595",
-        footercolor: "#381C00"
+        footercolor: "#023020"
       },
     },
   },
