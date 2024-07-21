@@ -66,7 +66,7 @@ const Footer = () => {
               className=" hover:text-brightColor transition-all cursor-pointer"
               href="/"
             >
-              TechwireLanka@email.com
+              TechwireLanka@gmail.com
             </a>
             <a
               className=" hover:text-brightColor transition-all cursor-pointer"
