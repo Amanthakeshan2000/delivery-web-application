@@ -1,32 +1,17 @@
 @keyframes slide-up {
-    from {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  from {
+    transform: translateY(50%);
+    opacity: 0;
   }
-  
-  .animate-slide-up {
-    animation: slide-up 0.3s ease-out;
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
-  @keyframes slide-up {
-    from {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-  
-  .animate-slide-up {
-    animation: slide-up 0.3s ease-out;
-  }
-    
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
 
 .custom-checkbox input[type="checkbox"] {
   position: absolute;
@@ -35,7 +20,6 @@
   width: 0;
   height: 0;
 }
-
 
 .custom-checkbox input[type="checkbox"] + span {
   position: relative;
@@ -76,17 +60,17 @@
   /* background-color: white;  */
   transform: translate(-50%, -50%);
 }
+
 .no-scroll {
   overflow: hidden;
 }
-
 
 .popup-container {
   position: fixed;
   inset: 0;
   display: flex;
   justify-content: center;
-  align-items: start;
+  align-items: flex-start; /* Changed from 'center' to 'flex-start' to align the popup at the top */
   background: rgba(0, 0, 0, 0.5);
   z-index: 50;
   overflow-y: auto;
@@ -102,16 +86,15 @@
   margin-top: 2rem;
   position: relative;
   animation: slide-up 0.3s ease-out;
+  overflow-y: auto;
+  max-height: 90vh;
 }
 
+.popup-box::-webkit-scrollbar {
+  display: none;
+}
 
-@keyframes slide-up {
-  from {
-    transform: translateY(50%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.popup-box {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
 }
