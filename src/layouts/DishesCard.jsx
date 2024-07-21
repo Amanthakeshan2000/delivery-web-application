@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../layouts/Button";
 import "../css/animate-slide-up.css";
 
@@ -46,18 +46,38 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
                 checked={selectedOption === "02"}
                 onChange={() => handleCheckboxChange("02")}
               />
-              <span className="ml-2 text-lg">Select 02</span>
+              <span className="ml-2 text-lg">Select 03</span>
             </label>
-            {/* <label className="flex items-center cursor-pointer">
+            <label className="flex items-center cursor-pointer">
               <input
                 type="checkbox"
                 name="selection"
-                value="03"
-                checked={selectedOption === "03"}
-                onChange={() => handleCheckboxChange("03")}
+                value="02"
+                checked={selectedOption === "02"}
+                onChange={() => handleCheckboxChange("02")}
               />
-              <span className="ml-2 text-lg">Select 03</span>
-            </label> */}
+              <span className="ml-2 text-lg">Select 04</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="02"
+                checked={selectedOption === "02"}
+                onChange={() => handleCheckboxChange("02")}
+              />
+              <span className="ml-2 text-lg">Select 05</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="02"
+                checked={selectedOption === "02"}
+                onChange={() => handleCheckboxChange("02")}
+              />
+              <span className="ml-2 text-lg">Select 06</span>
+            </label>
           </div>
           <div className="flex justify-center items-center space-x-4 mb-4">
             <button
@@ -91,6 +111,17 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
 const DishesCard = (props) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [quantity, setQuantity] = useState(1);
+
+  useEffect(() => {
+    if (isPopupVisible) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+    return () => {
+      document.body.classList.remove("no-scroll");
+    };
+  }, [isPopupVisible]);
 
   const handleAddClick = () => {
     setIsPopupVisible(true);
