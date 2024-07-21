@@ -91,7 +91,6 @@ const DishesCard = (props) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [successMessage, setSuccessMessage] = useState("");
-  const [messageAlignment, setMessageAlignment] = useState("center"); // "center", "left", "right"
 
   useEffect(() => {
     if (isPopupVisible) {
@@ -116,7 +115,7 @@ const DishesCard = (props) => {
     console.log(`Added ${quantity} of ${dish.title} to cart`);
     setIsPopupVisible(false);
     setSuccessMessage(`Successfully added ${quantity} of ${dish.title} to cart!`);
-    setTimeout(() => setSuccessMessage(""), 6000); // Clear message after 3 seconds
+    setTimeout(() => setSuccessMessage(""), 3000); // Clear message after 3 seconds
   };
 
   return (
@@ -157,9 +156,11 @@ const DishesCard = (props) => {
         />
       )}
       {successMessage && (
-        <div className={`success-message ${messageAlignment}`}>
-          <span>&#10004;</span> {/* Check mark */}
-          {successMessage}
+        <div className="success-message-container">
+          <div className="success-message">
+            <span>&#10004;</span> {/* Check mark */}
+            {successMessage}
+          </div>
         </div>
       )}
     </>
