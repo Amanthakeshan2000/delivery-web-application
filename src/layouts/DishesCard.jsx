@@ -57,6 +57,126 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
               />
               <span className="ml-2 text-lg">Select 03</span>
             </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="01"
+                checked={selectedOption === "01"}
+                onChange={() => handleCheckboxChange("01")}
+              />
+              <span className="ml-2 text-lg">Select 01</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="02"
+                checked={selectedOption === "02"}
+                onChange={() => handleCheckboxChange("02")}
+              />
+              <span className="ml-2 text-lg">Select 02</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="03"
+                checked={selectedOption === "03"}
+                onChange={() => handleCheckboxChange("03")}
+              />
+              <span className="ml-2 text-lg">Select 03</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="01"
+                checked={selectedOption === "01"}
+                onChange={() => handleCheckboxChange("01")}
+              />
+              <span className="ml-2 text-lg">Select 01</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="02"
+                checked={selectedOption === "02"}
+                onChange={() => handleCheckboxChange("02")}
+              />
+              <span className="ml-2 text-lg">Select 02</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="03"
+                checked={selectedOption === "03"}
+                onChange={() => handleCheckboxChange("03")}
+              />
+              <span className="ml-2 text-lg">Select 03</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="01"
+                checked={selectedOption === "01"}
+                onChange={() => handleCheckboxChange("01")}
+              />
+              <span className="ml-2 text-lg">Select 01</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="02"
+                checked={selectedOption === "02"}
+                onChange={() => handleCheckboxChange("02")}
+              />
+              <span className="ml-2 text-lg">Select 02</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="03"
+                checked={selectedOption === "03"}
+                onChange={() => handleCheckboxChange("03")}
+              />
+              <span className="ml-2 text-lg">Select 03</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="01"
+                checked={selectedOption === "01"}
+                onChange={() => handleCheckboxChange("01")}
+              />
+              <span className="ml-2 text-lg">Select 01</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="02"
+                checked={selectedOption === "02"}
+                onChange={() => handleCheckboxChange("02")}
+              />
+              <span className="ml-2 text-lg">Select 02</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="03"
+                checked={selectedOption === "03"}
+                onChange={() => handleCheckboxChange("03")}
+              />
+              <span className="ml-2 text-lg">Select 03</span>
+            </label>
           </div>
           <div className="flex justify-center items-center space-x-4 mb-4">
             <button

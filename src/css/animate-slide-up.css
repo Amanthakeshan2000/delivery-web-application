@@ -148,3 +148,7 @@
     transform: rotate(360deg);
   }
 }
+
+.popup-container {
+  overflow: hidden; 
+}
