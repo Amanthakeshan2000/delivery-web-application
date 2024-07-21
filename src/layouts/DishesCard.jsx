@@ -12,7 +12,7 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4 relative animate-slide-up">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md mx-4 relative animate-slide-up mt-4 overflow-y-auto max-h-[90vh]">
         <button
           onClick={onClose}
           className="absolute top-2 right-2 text-white bg-[#7a0000] hover:bg-red-700 rounded-full w-8 h-8 flex items-center justify-center transition-colors duration-300"
@@ -46,37 +46,17 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
                 checked={selectedOption === "02"}
                 onChange={() => handleCheckboxChange("02")}
               />
+              <span className="ml-2 text-lg">Select 02</span>
+            </label>
+            <label className="flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                name="selection"
+                value="03"
+                checked={selectedOption === "03"}
+                onChange={() => handleCheckboxChange("03")}
+              />
               <span className="ml-2 text-lg">Select 03</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="02"
-                checked={selectedOption === "02"}
-                onChange={() => handleCheckboxChange("02")}
-              />
-              <span className="ml-2 text-lg">Select 04</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="02"
-                checked={selectedOption === "02"}
-                onChange={() => handleCheckboxChange("02")}
-              />
-              <span className="ml-2 text-lg">Select 05</span>
-            </label>
-            <label className="flex items-center cursor-pointer">
-              <input
-                type="checkbox"
-                name="selection"
-                value="02"
-                checked={selectedOption === "02"}
-                onChange={() => handleCheckboxChange("02")}
-              />
-              <span className="ml-2 text-lg">Select 06</span>
             </label>
           </div>
           <div className="flex justify-center items-center space-x-4 mb-4">
