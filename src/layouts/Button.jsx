@@ -10,9 +10,9 @@ const Button = ({ title, className, onClick }) => {
     drop-shadow-lg
     border-0 
     border-brightColor 
-    text-viteGreen 
-    bg-white 
-    hover:bg-viteGreen 
+    text-white 
+    bg-green-500 
+    hover:bg-green-800  
     hover:text-white 
     transition-all 
     font-semibold
