@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "../css/CartPopup.css"; // Import the CSS file for styles
 
 const CartPopup = ({ cartItems, setCartItems, onClose }) => {
   useEffect(() => {
@@ -34,42 +35,42 @@ const CartPopup = ({ cartItems, setCartItems, onClose }) => {
   };
 
   return (
-    <div className="cart-popup">
+    <div className="cart-popup-overlay">
       <div className="cart-popup-content">
         <button
           onClick={onClose}
-          className="cart-popup-button"
+          className="cart-popup-close-button"
           aria-label="Close"
         >
           &times;
         </button>
-        <h2 className="text-2xl font-semibold mb-4 text-center">Cart</h2>
+        <h2 className="cart-popup-title">Cart</h2>
         {cartItems.length > 0 ? (
           cartItems.map((item, index) => (
-            <div key={index} className="flex items-center justify-between mb-4">
-              <img className="w-20 h-20 object-cover rounded-lg" src={item.img} alt={item.title} />
-              <div className="flex flex-col flex-1 mx-4">
-                <h3 className="text-sm">{item.title}</h3>
-                {/* <p className="text-sm">{item.description}</p> */}
-                <p className="text-sm font-semibold">${(item.price * item.quantity).toFixed(2)}</p>
+            <div key={index} className="cart-popup-item">
+              <img className="cart-popup-item-img" src={item.img} alt={item.title} />
+              <div className="cart-popup-item-details">
+                <h3 className="cart-popup-item-title">{item.title}</h3>
+                {/* <p className="cart-popup-item-description">{item.description}</p> */}
+                <p className="cart-popup-item-price">${(item.price * item.quantity).toFixed(2)}</p>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="cart-popup-item-controls">
                 <button
                   onClick={(event) => { handleQuantityChange(index, -1); handleButtonClick(event); }}
-                  className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors duration-300"
+                  className="cart-popup-item-control-button cart-popup-item-control-decrease"
                 >
                   -
                 </button>
                 <span>{item.quantity}</span>
                 <button
                   onClick={(event) => { handleQuantityChange(index, 1); handleButtonClick(event); }}
-                  className="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors duration-300"
+                  className="cart-popup-item-control-button cart-popup-item-control-increase"
                 >
                   +
                 </button>
                 <button
                   onClick={(event) => { handleRemoveItem(index); handleButtonClick(event); }}
-                  className="bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors duration-300"
+                  className="cart-popup-item-control-button cart-popup-item-control-remove"
                 >
                   &times;
                 </button>
@@ -77,13 +78,13 @@ const CartPopup = ({ cartItems, setCartItems, onClose }) => {
             </div>
           ))
         ) : (
-          <p className="text-center">Your cart is empty.</p>
+          <p className="cart-popup-empty">Your cart is empty.</p>
         )}
-        <div className="flex justify-between items-center mt-6">
-          <h3 className="text-lg font-semibold">Total: ${totalPrice}</h3>
+        <div className="cart-popup-footer">
+          <h3 className="cart-popup-total">Total: ${totalPrice}</h3>
           <button
             onClick={(event) => { onClose(); handleButtonClick(event); }}
-            className="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors duration-300"
+            className="cart-popup-close-footer"
           >
             Close
           </button>

@@ -120,3 +120,16 @@
     /* Your existing hover styles */
   }
   
+  /* Custom CSS for CartPopup */
+.cart-popup-content {
+    background-color: #e0f7fa; /* Light blue background */
+    border: 1px solid #b2ebf2; /* Light blue border */
+    font-size: 0.75rem; /* Extra small text */
+  }
+  
+  .cart-popup-item {
+    border: 1px solid #b2ebf2; /* Light blue border */
+    padding: 8px; /* Padding inside each item */
+    border-radius: 8px; /* Rounded corners */
+  }
+  
