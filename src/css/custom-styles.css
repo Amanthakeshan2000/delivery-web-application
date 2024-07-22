@@ -38,17 +38,17 @@
 .discount-banner-radio {
     background-color: #00cc00; /* Green background */
     color: white;
-    padding: 3px 8px;
+    padding: 1.5px 8px;
      font-size: 0.7rem;
     border-radius: 5px;
     font-weight: bold;
-    margin-right: 3px; /* Space between discount and price */
+    margin-right: 0px; /* Space between discount and price */
 }
 
 .discount-price-radio {
     background-color: #00cc00; /* Green background */
     color: white;
-    padding: 3px 8px;
+    padding: 1.5px 8px;
     border-radius: 5px;
     font-size: 0.7rem;
     font-weight: bold;
@@ -100,4 +100,7 @@
         opacity: 0;
         top: 0;
     }
+}
+.a{
+    font-size: 0.7rem;
 }
