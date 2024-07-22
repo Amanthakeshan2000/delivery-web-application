@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../layouts/Button";
+import CartPopup from "./CartPopup"; // Import the CartPopup component
 import "../css/animate-slide-up.css";
 import "../css/custom-styles.css";
 import "../css/navbar-popup.css"; // Import the new CSS file
@@ -85,6 +86,7 @@ const DishesCard = (props) => {
   const [successMessage, setSuccessMessage] = useState("");
   const [cartItems, setCartItems] = useState([]);
   const [isNavbarVisible, setIsNavbarVisible] = useState(false);
+  const [isCartPopupVisible, setIsCartPopupVisible] = useState(false);
 
   useEffect(() => {
     if (isPopupVisible) {
@@ -115,7 +117,7 @@ const DishesCard = (props) => {
   };
 
   const handleNavbarClick = () => {
-    setIsNavbarVisible(!isNavbarVisible);
+    setIsCartPopupVisible(!isCartPopupVisible);
   };
 
   const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -175,6 +177,13 @@ const DishesCard = (props) => {
             </div>
           </div>
         </div>
+      )}
+      {isCartPopupVisible && (
+        <CartPopup
+          cartItems={cartItems}
+          setCartItems={setCartItems}
+          onClose={() => setIsCartPopupVisible(false)}
+        />
       )}
     </>
   );
