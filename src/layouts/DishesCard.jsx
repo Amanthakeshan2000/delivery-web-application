@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Button from "../layouts/Button";
 import "../css/animate-slide-up.css";
+import "../css/custom-styles.css";
 
 const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -27,7 +28,7 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
         <p className="mb-4 text-center">{dish.description}</p>
         <div className="mb-4">
           <div className="flex flex-col space-y-3 mb-4 custom-radio">
-            <label className="flex items-center cursor-pointer">
+            <label className="flex items-center">
               <input
                 type="radio"
                 name="selection"
@@ -35,9 +36,18 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
                 checked={selectedOption === "01"}
                 onChange={() => handleRadioChange("01")}
               />
-              <span className="ml-2 text-lg">Select 01</span>
+              <div className="radio-content">
+                <div className="radio-text">
+                  <span className="text-lg">Select 01</span>
+                  <span className="additional-info">Never run out</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="discount-banner-radio">SAVE 21%</span>
+                  <span className="discount-price-radio">$37.9</span>
+                </div>
+              </div>
             </label>
-            <label className="flex items-center cursor-pointer">
+            <label className="flex items-center">
               <input
                 type="radio"
                 name="selection"
@@ -45,9 +55,18 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
                 checked={selectedOption === "02"}
                 onChange={() => handleRadioChange("02")}
               />
-              <span className="ml-2 text-lg">Select 02</span>
+              <div className="radio-content">
+                <div className="radio-text">
+                  <span className="text-lg">Select 02</span>
+                  <span className="additional-info">Never run out</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="discount-banner-radio">SAVE 21%</span>
+                  <span className="discount-price-radio">$37.9</span>
+                </div>
+              </div>
             </label>
-            <label className="flex items-center cursor-pointer">
+            <label className="flex items-center">
               <input
                 type="radio"
                 name="selection"
@@ -55,7 +74,16 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
                 checked={selectedOption === "03"}
                 onChange={() => handleRadioChange("03")}
               />
-              <span className="ml-2 text-lg">Select 03</span>
+              <div className="radio-content">
+                <div className="radio-text">
+                  <span className="text-lg">Select 03</span>
+                  <span className="additional-info">Never run out</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <span className="discount-banner-radio">SAVE 21%</span>
+                  <span className="discount-price-radio">$37.9</span>
+                </div>
+              </div>
             </label>
           </div>
           <div className="flex justify-center items-center space-x-4 mb-4">
