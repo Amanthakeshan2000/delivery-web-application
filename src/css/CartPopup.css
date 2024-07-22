@@ -1,174 +1,69 @@
-/* CartPopup.css */
-
-.cart-popup-overlay {
-    position: fixed;
-    inset: 0;
+/* Cart Popup Styles */
+.cart-popup {
     display: flex;
-    align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 50;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
   }
   
   .cart-popup-content {
-    background-color: #ffffff; /* Light blue background */
-    border: 1px solid #b2ebf2; /* Light blue border */
+    background-color: #ffffff; /* White background */
+    border: 1px solid #e0e0e0; /* Light gray border */
+    border-radius: 10px; /* Rounded corners */
     padding: 16px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 600px;
-    position: relative;
+    max-width: 90vw; /* Full-width on mobile */
+    max-height: 90vh; /* Full height on mobile */
     overflow-y: auto;
-    max-height: 90vh;
-    animation: slideIn 0.3s ease-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: opacity 0.3s ease-in-out; /* Fade-in effect */
   }
   
-  .cart-popup-close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #f44336; /* Red background */
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .cart-popup-close-button:hover {
-    background-color: #d32f2f; /* Darker red on hover */
-  }
-  
-  .cart-popup-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 16px;
-    text-align: center;
-  }
-  
-  .cart-popup-item {
+  .cart-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
-    border: 1px solid #b2ebf2;
+    padding: 8px;
+    border: 1px solid #e0e0e0; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background */
+  }
+  
+  .cart-item img {
+    width: 64px;
+    height: 64px;
     border-radius: 8px;
-    margin-bottom: 10px;
   }
   
-  .cart-popup-item-img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
+  .cart-item h3 {
+    font-size: 0.75rem;
   }
   
-  .cart-popup-item-details {
-    flex: 1;
-    margin-left: 16px;
+  .cart-item p {
+    font-size: 0.75rem;
   }
   
-  .cart-popup-item-title {
-    font-size: 16px;
-    font-weight: bold;
+  .cart-item button {
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
   }
   
-  .cart-popup-item-price {
-    font-size: 14px;
-    font-weight: bold;
+  .cart-item button:hover {
+    opacity: 0.9;
   }
   
-  .cart-popup-item-controls {
-    display: flex;
-    align-items: center;
-  }
-  
-  .cart-popup-item-control-button {
-    background-color: #4caf50; /* Green background */
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin: 0 4px;
-  }
-  
-  .cart-popup-item-control-button:hover {
-    background-color: #388e3c; /* Darker green on hover */
-  }
-  
-  .cart-popup-item-control-decrease {
-    background-color: #ff5722; /* Red background */
-  }
-  
-  .cart-popup-item-control-decrease:hover {
-    background-color: #e64a19; /* Darker red on hover */
-  }
-  
-  .cart-popup-item-control-remove {
-    background-color: #f44336; /* Red background */
-  }
-  
-  .cart-popup-item-control-remove:hover {
-    background-color: #d32f2f; /* Darker red on hover */
-  }
-  
-  .cart-popup-empty {
-    text-align: center;
-    font-size: 14px;
-    color: #555;
-  }
-  
-  .cart-popup-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 16px;
-  }
-  
-  .cart-popup-total {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .cart-popup-close-footer {
-    background-color: #4caf50; /* Green background */
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .cart-popup-close-footer:hover {
-    background-color: #388e3c; /* Darker green on hover */
-  }
-  
-  @keyframes slideIn {
+  @keyframes fade-in {
     from {
       opacity: 0;
-      transform: translateY(20px);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
     }
   }
   
-  /* No-scroll class to prevent scrolling */
-  .no-scroll {
-    overflow: hidden;
+  @media (max-width: 640px) {
+    .cart-popup-content {
+      padding: 12px;
+    }
   }
   
