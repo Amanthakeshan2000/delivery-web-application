@@ -105,3 +105,18 @@
     font-size: 0.7rem;
 }
 
+/* Custom CSS for CartPopup */
+.cart-popup-content {
+    background-color: #e0f7fa; /* Light blue background */
+    border: 1px solid #b2ebf2; /* Light blue border */
+    font-size: 0.75rem; /* Extra small text */
+  }
+  
+  .cart-popup-button {
+    /* Your existing button styles */
+  }
+  
+  .cart-popup-button:hover {
+    /* Your existing hover styles */
+  }
+  
