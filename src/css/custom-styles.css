@@ -58,7 +58,7 @@
     margin-top: 5px; /* Space between text */
   }
   
-  .success-message-container {
+  /* .success-message-container {
     position: fixed;
     top: 10px;
     left: 50%;
@@ -71,7 +71,7 @@
     display: flex;
     align-items: center;
     animation: fadeIn 0.5s, fadeOut 0.5s 2.5s;
-  }
+  } */
   
   .success-message-container span {
     margin-right: 10px;
