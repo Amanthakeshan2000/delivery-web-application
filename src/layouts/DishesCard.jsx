@@ -39,7 +39,7 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
     <div className="radio-content">
       <div className="radio-text">
         <span className="text-md">Subscribe</span>
-        <span className="additional-info a">Subscribe and Save</span>
+        {/* <span className="additional-info a"></span> */}
       </div>
       <div className="flex items-center space-x-3">
         <span className="discount-banner-radio text-sm a">SAVE 21%</span>
