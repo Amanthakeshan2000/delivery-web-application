@@ -39,9 +39,10 @@
     background-color: #00cc00; /* Green background */
     color: white;
     padding: 3px 8px;
+    font-size: 0.2rem;
     border-radius: 5px;
     font-weight: bold;
-    margin-right: 10px; /* Space between discount and price */
+    margin-right: 3px; /* Space between discount and price */
 }
 
 .discount-price-radio {
@@ -49,6 +50,7 @@
     color: white;
     padding: 3px 8px;
     border-radius: 5px;
+    font-size: 0.2rem;
     font-weight: bold;
 }
 
@@ -103,5 +105,5 @@
 
   
 .a{
-    font-size: 0.5rem;
+    font-size: 0.2rem;
 }
