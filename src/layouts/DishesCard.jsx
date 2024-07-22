@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Button from "../layouts/Button";
 import "../css/animate-slide-up.css";
 import "../css/custom-styles.css";
+import "../css/navbar-popup.css"; // Import the new CSS file
 
 const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -27,29 +28,28 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
         />
         <p className="mb-4 text-center">{dish.description}</p>
         <div className="mb-4">
-        <div className="flex flex-col space-y-3 mb-4 custom-radio">
-  <label className="flex items-center">
-    <input
-      type="radio"
-      name="selection"
-      value="01"
-      checked={selectedOption === "01"}
-      onChange={() => handleRadioChange("01")}
-    />
-    <div className="radio-content">
-      <div className="radio-text">
-        <span className="text-sm">Subscribe</span>
-        <span className="additional-info a">Subscribe Now</span>
-      </div>
-      <div className="flex items-center space-x-3">
-        <span className="discount-banner-radio b">SAVE 21%</span>
-        <span className="discount-price-radio b">$37.9</span>
-      </div>
-    </div>
-  </label>
-  {/* Repeat for other radio options */}
-</div>
-
+          <div className="flex flex-col space-y-3 mb-4 custom-radio">
+            <label className="flex items-center">
+              <input
+                type="radio"
+                name="selection"
+                value="01"
+                checked={selectedOption === "01"}
+                onChange={() => handleRadioChange("01")}
+              />
+              <div className="radio-content">
+                <div className="radio-text">
+                  <span className="text-sm">Subscribe</span>
+                  <span className="additional-info a">Subscribe Now</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <span className="discount-banner-radio b">SAVE 21%</span>
+                  <span className="discount-price-radio b">$37.9</span>
+                </div>
+              </div>
+            </label>
+            {/* Repeat for other radio options */}
+          </div>
           <div className="flex justify-center items-center space-x-4 mb-4">
             <button
               onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
@@ -83,6 +83,8 @@ const DishesCard = (props) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [successMessage, setSuccessMessage] = useState("");
+  const [cartItems, setCartItems] = useState([]);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(false);
 
   useEffect(() => {
     if (isPopupVisible) {
@@ -104,11 +106,20 @@ const DishesCard = (props) => {
   };
 
   const handleAddToCart = (dish, quantity) => {
-    console.log(`Added ${quantity} of ${dish.title} to cart`);
+    const updatedCartItems = [...cartItems, { ...dish, quantity }];
+    setCartItems(updatedCartItems);
     setIsPopupVisible(false);
-    setSuccessMessage(` Successfully added to cart`); 
-    setTimeout(() => setSuccessMessage(""), 3000); 
+    setSuccessMessage(` Successfully added to cart`);
+    setTimeout(() => setSuccessMessage(""), 3000);
+    setIsNavbarVisible(true);
   };
+
+  const handleNavbarClick = () => {
+    setIsNavbarVisible(!isNavbarVisible);
+  };
+
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
 
   return (
     <>
@@ -152,6 +163,16 @@ const DishesCard = (props) => {
           <div className="success-message">
             <span>&#10004;</span> {/* Check mark */}
             {successMessage}
+          </div>
+        </div>
+      )}
+      {isNavbarVisible && (
+        <div className={`navbar-popup ${isNavbarVisible ? "show" : ""}`}>
+          <div className="navbar-content">
+            <div className="navbar-item" onClick={handleNavbarClick}>
+              <span>Items: {totalItems}</span>
+              <span>Total: ${totalPrice}</span>
+            </div>
           </div>
         </div>
       )}
