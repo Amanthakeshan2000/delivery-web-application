@@ -38,53 +38,16 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
               />
               <div className="radio-content">
                 <div className="radio-text">
-                  <span className="text-lg">Select 01</span>
-                  <span className="additional-info">Never run out</span>
+                  <span className="text-md">Subscribe</span>
+                  <span className="additional-info">Subscribe and Save</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <span className="discount-banner-radio">SAVE 21%</span>
-                  <span className="discount-price-radio">$37.9</span>
+                  <span className="discount-banner-radio text-sm">SAVE 21%</span>
+                  <span className="discount-price-radio text-sm">$37.9</span>
                 </div>
               </div>
             </label>
-            <label className="flex items-center">
-              <input
-                type="radio"
-                name="selection"
-                value="02"
-                checked={selectedOption === "02"}
-                onChange={() => handleRadioChange("02")}
-              />
-              <div className="radio-content">
-                <div className="radio-text">
-                  <span className="text-lg">Select 02</span>
-                  <span className="additional-info">Never run out</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="discount-banner-radio">SAVE 21%</span>
-                  <span className="discount-price-radio">$37.9</span>
-                </div>
-              </div>
-            </label>
-            <label className="flex items-center">
-              <input
-                type="radio"
-                name="selection"
-                value="03"
-                checked={selectedOption === "03"}
-                onChange={() => handleRadioChange("03")}
-              />
-              <div className="radio-content">
-                <div className="radio-text">
-                  <span className="text-lg">Select 03</span>
-                  <span className="additional-info">Never run out</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="discount-banner-radio">SAVE 21%</span>
-                  <span className="discount-price-radio">$37.9</span>
-                </div>
-              </div>
-            </label>
+            {/* Repeat for other radio options */}
           </div>
           <div className="flex justify-center items-center space-x-4 mb-4">
             <button
