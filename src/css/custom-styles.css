@@ -5,7 +5,7 @@
     display: flex;
     align-items: center; /* Align items in the center */
     justify-content: space-between; /* Space between items */
-    border: 2px solid #00008B; /* Dark blue outline */
+    border: 1px solid #6060ff; /* Dark blue outline */
     margin-bottom: 10px; /* Space between radio buttons */
     cursor: pointer;
     transition: background-color 0.3s;
