@@ -27,28 +27,29 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
         />
         <p className="mb-4 text-center">{dish.description}</p>
         <div className="mb-4">
-          <div className="flex flex-col space-y-3 mb-4 custom-radio">
-            <label className="flex items-center">
-              <input
-                type="radio"
-                name="selection"
-                value="01"
-                checked={selectedOption === "01"}
-                onChange={() => handleRadioChange("01")}
-              />
-              <div className="radio-content">
-                <div className="radio-text">
-                  <span className="text-md">Subscribe</span>
-                  <span className="additional-info">Subscribe and Save</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="discount-banner-radio text-sm">SAVE 21%</span>
-                  <span className="discount-price-radio text-sm">$37.9</span>
-                </div>
-              </div>
-            </label>
-            {/* Repeat for other radio options */}
-          </div>
+        <div className="flex flex-col space-y-3 mb-4 custom-radio">
+  <label className="flex items-center">
+    <input
+      type="radio"
+      name="selection"
+      value="01"
+      checked={selectedOption === "01"}
+      onChange={() => handleRadioChange("01")}
+    />
+    <div className="radio-content">
+      <div className="radio-text">
+        <span className="text-md">Subscribe</span>
+        <span className="additional-info a">Subscribe and Save</span>
+      </div>
+      <div className="flex items-center space-x-3">
+        <span className="discount-banner-radio text-sm a">SAVE 21%</span>
+        <span className="discount-price-radio text-sm a">$37.9</span>
+      </div>
+    </div>
+  </label>
+  {/* Repeat for other radio options */}
+</div>
+
           <div className="flex justify-center items-center space-x-4 mb-4">
             <button
               onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
