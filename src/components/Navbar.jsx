@@ -4,9 +4,13 @@ import Button from "../layouts/Button";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
+import SignIn from "./SignIn";
+import Register from "./Register";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
+  const [showSignIn, setShowSignIn] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
 
   const handleChange = () => {
     setMenu(!menu);
@@ -16,13 +20,27 @@ const Navbar = () => {
     setMenu(false);
   };
 
+  const toggleSignIn = () => {
+    setShowSignIn(!showSignIn);
+    setShowRegister(false);
+  };
+
+  const toggleRegister = () => {
+    setShowRegister(!showRegister);
+    setShowSignIn(false);
+  };
+
+  const closeAuthModals = () => {
+    setShowSignIn(false);
+    setShowRegister(false);
+  };
+
   return (
     <div className="fixed w-full top-0 left-0 z-50">
       <div>
-        <div className=" flex flex-row justify-between p-5 md:px-32 px-5 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-index-1">
-          <div className=" flex flex-row items-center cursor-pointer">
-
-            <h1 className=" text-xl font-semibold">LOGO</h1>
+        <div className="flex flex-row justify-between p-5 md:px-32 px-5 bg-white shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-index-1">
+          <div className="flex flex-row items-center cursor-pointer">
+            <h1 className="text-xl font-semibold">LOGO</h1>
           </div>
 
           <nav className="hidden md:flex flex-row items-center text-lg font-medium gap-8">
@@ -37,7 +55,7 @@ const Navbar = () => {
             </Link>
 
             <div className="relative group">
-              <div className=" flex items-center gap-1">
+              <div className="flex items-center gap-1">
                 <Link
                   to="dishes"
                   spy={true}
@@ -129,7 +147,7 @@ const Navbar = () => {
               Reviews
             </Link>
 
-            <Button title="Sign In" />
+            <Button title="Sign In" onClick={toggleSignIn} />
           </nav>
 
           <div className="md:hidden flex items-center">
@@ -190,15 +208,28 @@ const Navbar = () => {
             spy={true}
             smooth={true}
             duration={500}
-            className=" hover:text-brightColor transition-all cursor-pointer"
+            className="hover:text-brightColor transition-all cursor-pointer"
             onClick={closeMenu}
           >
             Reviews
           </Link>
 
-          <Button title="Sign In" />
+          <Button title="Sign In" onClick={toggleSignIn} />
         </div>
       </div>
+
+      {showSignIn && (
+        <SignIn
+          onClose={closeAuthModals}
+          switchToRegister={toggleRegister}
+        />
+      )}
+      {showRegister && (
+        <Register
+          onClose={closeAuthModals}
+          switchToSignIn={toggleSignIn}
+        />
+      )}
     </div>
   );
 };
