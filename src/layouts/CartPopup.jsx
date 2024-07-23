@@ -31,6 +31,13 @@ const CartPopup = ({ cartItems, setCartItems, onClose }) => {
   return (
     <div className="cart-popup-overlay">
       <div className="cart-popup-container">
+        <button
+          onClick={onClose}
+          className="cart-popup-close-button"
+          aria-label="Close"
+        >
+          &times;
+        </button>
         <h2 className="cart-popup-title">Cart</h2>
         {cartItems.length > 0 ? (
           cartItems.map((item, index) => (
