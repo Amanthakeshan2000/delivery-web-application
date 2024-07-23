@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import '../css/Auth.css';
 
 const OTPVerification = ({ onVerify, onResendOTP }) => {
-  const [otp, setOtp] = useState(new Array(6).fill(''));
-  const [timeLeft, setTimeLeft] = useState(30);
+  const [otp, setOtp] = useState(new Array(5).fill(''));
+  const [timeLeft, setTimeLeft] = useState(60);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -29,7 +29,7 @@ const OTPVerification = ({ onVerify, onResendOTP }) => {
   };
 
   const handleResend = () => {
-    setOtp(new Array(6).fill(''));
+    setOtp(new Array(5).fill(''));
     setTimeLeft(30);
     onResendOTP();
   };
@@ -37,7 +37,7 @@ const OTPVerification = ({ onVerify, onResendOTP }) => {
   return (
     <div className="auth-overlay">
       <div className="auth-container">
-        <h2 className="text-3xl font-bold mb-6 text-center text-blue  animate-pulse">
+        <h2 className="text-3xl font-extrabold mb-6 text-center text-blue  animate-pulse">
           OTP Verification
         </h2>
         <form onSubmit={handleVerify}>
