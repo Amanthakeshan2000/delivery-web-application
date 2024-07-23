@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import "../css/CartPopup.css";
+
 
 const CartPopup = ({ cartItems, setCartItems, onClose }) => {
   useEffect(() => {

@@ -3,7 +3,7 @@ body.no-scroll {
   }
   
   .cart-popup-content {
-    background-color: #e0f7fa; /* Light blue background */
+    background-color: #ffffff; /* Light blue background */
     border: 1px solid #b2ebf2; /* Light blue border */
     padding: 6px;
     border-radius: 8px;
@@ -22,7 +22,7 @@ body.no-scroll {
   }
   
   .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 {
-    background-color: #e0f7fa;
+    background-color: #ffffff;
     border: 1px solid #b2ebf2;
     padding: 24px;
     border-radius: 8px;
