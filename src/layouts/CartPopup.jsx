@@ -29,41 +29,34 @@ const CartPopup = ({ cartItems, setCartItems, onClose }) => {
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-      <div className="bg-light-blue-100 border border-light-blue-300 p-6 rounded-lg shadow-lg w-full max-w-md mx-4 sm:mx-2 relative animate-slide-up mt-4 overflow-y-auto max-h-[90vh]">
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-white bg-red-600 hover:bg-red-700 rounded-full w-8 h-8 flex items-center justify-center transition-colors duration-300"
-          aria-label="Close"
-        >
-          &times;
-        </button>
-        <h2 className="text-2xl font-semibold mb-4 text-center">Cart</h2>
+    <div className="cart-popup-overlay">
+      <div className="cart-popup-container">
+        <h2 className="cart-popup-title">Cart</h2>
         {cartItems.length > 0 ? (
           cartItems.map((item, index) => (
-            <div key={index} className="flex items-center justify-between mb-4 border border-light-blue-300 p-2 rounded-lg">
-              <img className="w-16 h-16 object-cover rounded-lg" src={item.img} alt={item.title} />
-              <div className="flex flex-col flex-1 mx-4">
-                <h3 className="text-xs font-semibold">{item.title}</h3>
-                <p className="text-xs font-semibold">${(item.price * item.quantity).toFixed(2)}</p>
+            <div key={index} className="cart-popup-item">
+              <img className="cart-popup-item-image" src={item.img} alt={item.title} />
+              <div className="cart-popup-item-details">
+                <h3 className="cart-popup-item-title">{item.title}</h3>
+                <p className="cart-popup-item-price">${(item.price * item.quantity).toFixed(2)}</p>
               </div>
-              <div className="flex items-center space-x-1">
+              <div className="cart-popup-item-quantity">
                 <button
                   onClick={() => handleQuantityChange(index, -1)}
-                  className="bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors duration-300"
+                  className="cart-popup-quantity-button"
                 >
                   -
                 </button>
-                <span className="text-xs">{item.quantity}</span>
+                <span className="cart-popup-quantity">{item.quantity}</span>
                 <button
                   onClick={() => handleQuantityChange(index, 1)}
-                  className="bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors duration-300"
+                  className="cart-popup-quantity-button"
                 >
                   +
                 </button>
                 <button
                   onClick={() => handleRemoveItem(index)}
-                  className="bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors duration-300"
+                  className="cart-popup-remove-button"
                 >
                   &times;
                 </button>
@@ -71,14 +64,14 @@ const CartPopup = ({ cartItems, setCartItems, onClose }) => {
             </div>
           ))
         ) : (
-          <p className="text-center text-xs">Your cart is empty.</p>
+          <p className="cart-popup-empty">Your cart is empty.</p>
         )}
-        <div className="flex justify-between items-center mt-4 text-xs">
-          <h3 className="font-semibold">Total: ${totalPrice}</h3>
+        <div className="cart-popup-total">
+          <h3>Total: ${totalPrice}</h3>
         </div>
         <button
           onClick={onClose}
-          className="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors duration-300 mt-4 w-full"
+          className="cart-popup-select-button"
         >
           Select Your Dining Preference
         </button>
