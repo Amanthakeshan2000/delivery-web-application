@@ -77,10 +77,9 @@ const Register = ({ onClose, switchToSignIn }) => {
           <button type="submit" className="auth-submit-btn bg-blue-500">Register</button>
         </form>
         <p className="auth-switch text-center">
-          Already have an account?
-           
-          <span onClick={switchToSignIn}> Sign In</span>
-        </p>
+  - Already have an account? -<br />
+  <span onClick={switchToSignIn}>Sign In</span>
+</p>
       </div>
     </div>
   );
