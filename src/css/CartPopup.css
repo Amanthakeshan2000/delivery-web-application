@@ -1,69 +1,112 @@
-/* Cart Popup Styles */
-.cart-popup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: rgba(0, 0, 0, 0.6);
+body.no-scroll {
+    overflow: hidden;
   }
   
   .cart-popup-content {
-    background-color: #ffffff; /* White background */
-    border: 1px solid #e0e0e0; /* Light gray border */
-    border-radius: 10px; /* Rounded corners */
-    padding: 16px;
-    max-width: 90vw; /* Full-width on mobile */
-    max-height: 90vh; /* Full height on mobile */
-    overflow-y: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: opacity 0.3s ease-in-out; /* Fade-in effect */
+    background-color: #e0f7fa; /* Light blue background */
+    border: 1px solid #b2ebf2; /* Light blue border */
+    padding: 6px;
+    border-radius: 8px;
+    font-size: 0.75rem; /* Extra small text */
   }
   
-  .cart-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 8px;
-    border: 1px solid #e0e0e0; /* Light gray border */
+  .cart-popup-item {
+    border: 1px solid #b2ebf2; /* Light blue border */
+    padding: 8px; /* Padding inside each item */
     border-radius: 8px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light background */
   }
   
-  .cart-item img {
+  .fixed.inset-0.flex.items-center.justify-center {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+  }
+  
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 {
+    background-color: #e0f7fa;
+    border: 1px solid #b2ebf2;
+    padding: 24px;
+    border-radius: 8px;
+    shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    overflow-y: auto;
+    max-height: 90vh;
+  }
+  
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 .border-light-blue-300 {
+    border: 1px solid #b2ebf2;
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 img {
     width: 64px;
     height: 64px;
+    object-fit: cover;
     border-radius: 8px;
   }
   
-  .cart-item h3 {
-    font-size: 0.75rem;
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 .flex.flex-col {
+    margin-left: 16px;
+    flex: 1;
   }
   
-  .cart-item p {
-    font-size: 0.75rem;
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 .flex.flex-col h3 {
+    font-size: 0.875rem;
+    font-weight: 600;
   }
   
-  .cart-item button {
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 .flex.items-center.space-x-1 button {
+    background-color: #38a169;
+    color: #fff;
     width: 24px;
     height: 24px;
-    font-size: 0.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
   }
   
-  .cart-item button:hover {
-    opacity: 0.9;
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 .flex.items-center.space-x-1 button:hover {
+    background-color: #2f855a;
   }
   
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 .flex.items-center.space-x-1 span {
+    font-size: 0.875rem;
   }
   
-  @media (max-width: 640px) {
-    .cart-popup-content {
-      padding: 12px;
-    }
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 .text-center.text-xs {
+    font-size: 0.875rem;
+  }
+  
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 .mt-4.text-xs {
+    font-size: 0.875rem;
+  }
+  
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 .mt-4.text-xs h3 {
+    font-weight: 600;
+  }
+  
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 .mt-4.text-xs button {
+    background-color: #38a169;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    width: 100%;
+    transition: background-color 0.3s;
+  }
+  
+  .fixed.inset-0.flex.items-center.justify-center .bg-light-blue-100 .mt-4.text-xs button:hover {
+    background-color: #2f855a;
   }
   

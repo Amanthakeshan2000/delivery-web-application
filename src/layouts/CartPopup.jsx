@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import "../css/CartPopup.css"; // Import the CSS file for styles
-
 
 const CartPopup = ({ cartItems, setCartItems, onClose }) => {
   useEffect(() => {
@@ -29,46 +27,41 @@ const CartPopup = ({ cartItems, setCartItems, onClose }) => {
 
   const totalPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
 
+  // Prevent default form submission behavior
   const handleButtonClick = (event) => {
     event.preventDefault();
+    // Add any other logic you need here
   };
 
   return (
-    <div className="cart-popup fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-60">
-      <div className="cart-popup-content relative bg-white border border-gray-300 rounded-lg shadow-lg p-4 sm:p-6 w-full max-w-sm mx-4 sm:mx-2 animate-fade-in">
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-white bg-red-600 hover:bg-red-700 rounded-full w-6 h-6 flex items-center justify-center transition-colors duration-300"
-          aria-label="Close"
-        >
-          &times;
-        </button>
-        <h2 className="text-lg font-bold mb-4 text-center">Cart</h2>
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="bg-light-blue-100 border border-light-blue-300 p-6 rounded-lg shadow-lg w-full max-w-md mx-4 sm:mx-2 relative animate-slide-up mt-4 overflow-y-auto max-h-[90vh]">
+        <h2 className="text-2xl font-semibold mb-4 text-center">Cart</h2>
         {cartItems.length > 0 ? (
           cartItems.map((item, index) => (
-            <div key={index} className="cart-item flex items-center justify-between mb-4 p-2 border border-gray-300 rounded-lg shadow-sm">
+            <div key={index} className="flex items-center justify-between mb-4 border border-light-blue-300 p-2 rounded-lg">
               <img className="w-16 h-16 object-cover rounded-lg" src={item.img} alt={item.title} />
-              <div className="flex flex-col flex-1 mx-2">
+              <div className="flex flex-col flex-1 mx-4">
                 <h3 className="text-xs font-semibold">{item.title}</h3>
                 <p className="text-xs font-semibold">${(item.price * item.quantity).toFixed(2)}</p>
               </div>
               <div className="flex items-center space-x-1">
                 <button
                   onClick={(event) => { handleQuantityChange(index, -1); handleButtonClick(event); }}
-                  className="bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors duration-300 text-xs"
+                  className="bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors duration-300"
                 >
                   -
                 </button>
                 <span className="text-xs">{item.quantity}</span>
                 <button
                   onClick={(event) => { handleQuantityChange(index, 1); handleButtonClick(event); }}
-                  className="bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors duration-300 text-xs"
+                  className="bg-green-500 text-white w-6 h-6 rounded-full flex items-center justify-center hover:bg-green-700 transition-colors duration-300"
                 >
                   +
                 </button>
                 <button
                   onClick={(event) => { handleRemoveItem(index); handleButtonClick(event); }}
-                  className="bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors duration-300 text-xs"
+                  className="bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors duration-300"
                 >
                   &times;
                 </button>
@@ -80,13 +73,13 @@ const CartPopup = ({ cartItems, setCartItems, onClose }) => {
         )}
         <div className="flex justify-between items-center mt-4 text-xs">
           <h3 className="font-semibold">Total: ${totalPrice}</h3>
-          <button
-            onClick={(event) => { onClose(); handleButtonClick(event); }}
-            className="bg-green-500 text-white px-4 py-1 rounded-full hover:bg-green-700 transition-colors duration-300 text-xs"
-          >
-            Close
-          </button>
         </div>
+        <button
+          onClick={onClose}
+          className="bg-green-500 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors duration-300 mt-4 w-full"
+        >
+          Select Your Dining Preference
+        </button>
       </div>
     </div>
   );
