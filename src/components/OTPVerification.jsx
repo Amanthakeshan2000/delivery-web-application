@@ -37,7 +37,7 @@ const OTPVerification = ({ onVerify, onResendOTP }) => {
   return (
     <div className="auth-overlay">
       <div className="auth-container">
-        <h2 className="text-3xl font-extrabold mb-6 text-center text-blue  animate-pulse">
+        <h2 className="text-3xl font-bold mb-6 text-center text-blue  animate-pulse">
           OTP Verification
         </h2>
         <form onSubmit={handleVerify}>

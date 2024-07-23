@@ -39,7 +39,7 @@ const SignIn = ({ onClose, switchToRegister }) => {
           </div>
           <button type="submit" className="auth-submit-btn bg-blue-500">Sign In</button>
         </form>
-        <p className="auth-switch">
+        <p className="auth-switch text-center">
           Don't have an account? <span onClick={switchToRegister}>Register</span>
         </p>
       </div>
