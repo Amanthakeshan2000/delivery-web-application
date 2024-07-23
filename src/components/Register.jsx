@@ -15,7 +15,7 @@ const Register = ({ onClose, switchToSignIn }) => {
     <div className="auth-overlay">
       <div className="auth-container">
         <button className="auth-close-btn" onClick={onClose}>&times;</button>
-        <h2 className="text-3xl font-extrabold mb-6 text-center text-Blue decoration-wavy  ">
+        <h2 className="text-3xl font-bold mb-6 text-center text-Blue decoration-wavy  ">
   Sign Up
 </h2>
         <form onSubmit={handleRegister}>
