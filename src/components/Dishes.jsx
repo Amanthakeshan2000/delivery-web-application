@@ -15,7 +15,7 @@ const Dishes = () => {
           throw new Error("Access token not available");
         }
 
-        const categoryResponse = await fetch(`/api/get-category?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923`, {
+        const categoryResponse = await fetch(`https://checkmateapi20240716235602.azurewebsites.net/get-category?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
