@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
 import Button from "../layouts/Button";
-import CartPopup from "./CartPopup"; // Import the CartPopup component
+import CartPopup from "./CartPopup";
 import "../css/animate-slide-up.css";
 import "../css/custom-styles.css";
-import "../css/navbar-popup.css"; // Import the new CSS file
+import "../css/navbar-popup.css";
 
+// Popup Component
 const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleRadioChange = (value) => {
     setSelectedOption(value);
-  };  
+  };
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -80,6 +81,7 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
   );
 };
 
+// DishesCard Component
 const DishesCard = (props) => {
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [quantity, setQuantity] = useState(1);
@@ -111,7 +113,7 @@ const DishesCard = (props) => {
     const updatedCartItems = [...cartItems, { ...dish, quantity }];
     setCartItems(updatedCartItems);
     setIsPopupVisible(false);
-    setSuccessMessage(` Successfully added to cart`);
+    setSuccessMessage("Successfully added to cart");
     setTimeout(() => setSuccessMessage(""), 3000);
     setIsNavbarVisible(true);
   };
@@ -125,22 +127,24 @@ const DishesCard = (props) => {
 
   return (
     <>
-      <div className="w-full lg:w-1/4 p-6 bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105">
-        <img
-          className="w-full h-48 object-cover rounded-t-lg transition-transform duration-200 hover:scale-110"
-          src={props.img}
-          alt="Dish Image"
-        />
-        <div className="p-4 space-y-4">
-          <h3 className="font-semibold text-xl text-center text-gray-800">{props.title}</h3>
-          <div className="flex justify-center space-x-1">
-            <p>Seeni sambol, coconut sambol, katta sambol and curry leaf sambol with a basket of papadums</p>
+      <div className="w-full lg:w-150 p-6 bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 flex flex-col justify-between">
+        <div className="flex-grow">
+          <img
+            className="w-full h-48 object-cover rounded-t-lg transition-transform duration-200 hover:scale-110"
+            src={props.img}
+            alt="Dish Image"
+          />
+          <div className="p-4 space-y-4">
+            <h3 className="font-semibold text-xl text-center text-gray-800">{props.title}</h3>
+            <p className="text-center">{props.description}</p>
           </div>
-          <div className="flex flex-col md:flex-row items-center justify-center md:justify-between gap-4">
-            <h3 className="font-semibold text-lg text-gray-700">{props.price}</h3>
+        </div>
+        <div className="p-4">
+          <div className="flex justify-between items-center">
+            <h3 className="font-semibold text-lg text-gray-700">Rs. {props.price}</h3>
             <Button
               title="Add"
-              className="bg-green-500 text-white hover:bg-green-800 transition-colors duration-300"
+              className="w-auto bg-green-500 text-white hover:bg-green-800 transition-colors duration-300"
               onClick={handleAddClick}
             />
           </div>
@@ -151,7 +155,7 @@ const DishesCard = (props) => {
           dish={{
             title: props.title,
             img: props.img,
-            description: "Seeni sambol, coconut sambol, katta sambol and curry leaf sambol with a basket of papadums",
+            description: props.description,
             price: props.price,
           }}
           quantity={quantity}
@@ -161,21 +165,23 @@ const DishesCard = (props) => {
         />
       )}
       {successMessage && (
-        <div className="success-message-container">
-          <div className="success-message">
-            <span>&#10004;</span> {/* Check mark */}
-            {successMessage}
-          </div>
+        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center">
+          <span className="text-lg">&#10004;</span> {/* Check mark */}
+          <span className="ml-2">{successMessage}</span>
         </div>
       )}
       {isNavbarVisible && (
-        <div className={`navbar-popup ${isNavbarVisible ? "show" : ""}`}>
-          <div className="navbar-content">
-            <div className="navbar-item" onClick={handleNavbarClick}>
-              <span>Items: {totalItems}</span>
-              <span>Total: ${totalPrice}</span>
-            </div>
+        <div className={`fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 flex justify-between items-center transition-transform duration-300 ${isNavbarVisible ? "translate-y-0" : "translate-y-full"}`}>
+          <div className="flex items-center space-x-4">
+            <span>Items: {totalItems}</span>
+            <span>Total: ${totalPrice}</span>
           </div>
+          <button
+            onClick={handleNavbarClick}
+            className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-colors duration-300"
+          >
+            View Cart
+          </button>
         </div>
       )}
       {isCartPopupVisible && (

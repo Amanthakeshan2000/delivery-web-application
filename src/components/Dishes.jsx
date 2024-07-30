@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import img1 from "../assets/img/dish.png";
+import img1 from "../assets/img/dish.png"; // Default image
 import DishesCard from "../layouts/DishesCard";
 import getAccessToken from "../utils/auth";
 
@@ -57,13 +57,14 @@ const Dishes = () => {
   return (
     <div className="min-h-screen flex flex-col justify-center items-center lg:px-32 px-5 bg-gray-50">
       <h1 className="text-4xl lg:text-5xl font-bold text-gray-800 py-24">
+        {/* Optional: Display category names here */}
         {/* {categories.length > 0 ? categories.map(category => category.name).join(", ") : "Loading categories..."} */}
       </h1>
 
       <div className="flex flex-col gap-16 lg:px-10 px-5">
         {categories.map(category => (
           <div key={category.id} className="bg-white p-6 rounded-lg shadow-md mb-8 w-full lg:w-3/4 mx-auto">
-            <h2 className="text-5xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200  pb-4 text-center">
+            <h2 className="text-5xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-4 text-center">
               {category.name}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -71,7 +72,7 @@ const Dishes = () => {
                 products[category.id].map(product => (
                   <DishesCard
                     key={product.id}
-                    img={product.image || img1}
+                    img={product.image}
                     title={product.name}
                     description={product.description}
                     price={product.price}
