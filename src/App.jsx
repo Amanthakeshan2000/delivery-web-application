@@ -26,9 +26,9 @@ const App = () => {
 
       
 
-        <div id="menu">
+        {/* <div id="menu">
           <Menu />
-        </div>
+        </div> */}
 
         <div id="review">
           <Review />

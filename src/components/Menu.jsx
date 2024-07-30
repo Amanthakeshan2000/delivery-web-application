@@ -10,12 +10,12 @@ const Menu = () => {
       </h1>
 
       <div className=" flex flex-wrap gap-8 justify-center">
-        <DishesCard img={img1} title="SRI LANKAN CRAB" price="RM144.00" />
+        {/* <DishesCard img={img1} title="SRI LANKAN CRAB" price="RM144.00" />
         <DishesCard img={img1} title="MUTTON BONE & MARROW" price="RM144.00" />
         <DishesCard img={img1} title="KANDYAN PACKETS" price="RM144.00" />
         <DishesCard img={img1} title="SRI LANKAN CRAB" price="RM144.00" />
         <DishesCard img={img1} title="MUTTON BONE & MARROW" price="RM144.00" />
-        <DishesCard img={img1} title="KANDYAN PACKETS" price="RM144.00" />
+        <DishesCard img={img1} title="KANDYAN PACKETS" price="RM144.00" /> */}
         
       </div>
     </div>
