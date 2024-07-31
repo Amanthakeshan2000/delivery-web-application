@@ -1,79 +1,57 @@
 import React, { useState, useEffect } from "react";
-import img1 from "../assets/img/dish.png"; // Default image
 import DishesCard from "../layouts/DishesCard";
-// import getAccessToken from "../utils/auth";
+import getAccessToken from "../utils/auth";
 
 const Dishes = () => {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState({});
-  const [token, setToken] = useState("");
 
   useEffect(() => {
-    const fetchToken = async () => {
+    const fetchCategories = async () => {
       try {
-        const storedToken = sessionStorage.getItem("accessToken");
-        if (storedToken) {
-          setToken(storedToken);
-        } else {
-          const newToken = await getAccessToken();
-          if (newToken) {
-            sessionStorage.setItem("accessToken", newToken);
-            setToken(newToken);
-          } else {
-            throw new Error("Access token not available");
-          }
+        const token = await getAccessToken();
+        if (!token) {
+          throw new Error("Access token not available");
         }
-      } catch (error) {
-        console.error("Error fetching or storing token:", error);
-      }
-    };
 
-    fetchToken();
-  }, []);
+        const categoryResponse = await fetch(`https://checkmateapi20240716235602.azurewebsites.net/get-category?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-  useEffect(() => {
-    if (token) {
-      const fetchCategoriesAndProducts = async () => {
-        try {
-          const categoryResponse = await fetch(`https://checkmateapi20240716235602.azurewebsites.net/get-category?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923`, {
+        if (!categoryResponse.ok) {
+          throw new Error(`HTTP error! Status: ${categoryResponse.status}`);
+        }
+
+        const categoryData = await categoryResponse.json();
+        setCategories(categoryData);
+
+        // Fetch products for each category
+        categoryData.forEach(async (category) => {
+          const productResponse = await fetch(`https://checkmateapi20240716235602.azurewebsites.net/get-productlist?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923&CategoryIndex=${category.id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
 
-          if (!categoryResponse.ok) {
-            throw new Error(`HTTP error! Status: ${categoryResponse.status}`);
+          if (!productResponse.ok) {
+            throw new Error(`HTTP error! Status: ${productResponse.status}`);
           }
 
-          const categoryData = await categoryResponse.json();
-          setCategories(categoryData);
+          const productData = await productResponse.json();
+          setProducts(prevProducts => ({
+            ...prevProducts,
+            [category.id]: productData
+          }));
+        });
+      } catch (error) {
+        console.error("Error fetching categories or products:", error);
+      }
+    };
 
-          // Fetch products for each category
-          categoryData.forEach(async (category) => {
-            const productResponse = await fetch(`https://checkmateapi20240716235602.azurewebsites.net/get-productlist?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923&CategoryIndex=${category.id}`, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            });
-
-            if (!productResponse.ok) {
-              throw new Error(`HTTP error! Status: ${productResponse.status}`);
-            }
-
-            const productData = await productResponse.json();
-            setProducts(prevProducts => ({
-              ...prevProducts,
-              [category.id]: productData
-            }));
-          });
-        } catch (error) {
-          console.error("Error fetching categories or products:", error);
-        }
-      };
-
-      fetchCategoriesAndProducts();
-    }
-  }, [token]);
+    fetchCategories();
+  }, []);
 
   return (
     <div className="min-h-screen flex flex-col justify-center items-center lg:px-32 px-1 bg-gray-50">
@@ -94,7 +72,7 @@ const Dishes = () => {
                 products[category.id].map(product => (
                   <DishesCard
                     key={product.id}
-                    img={product.image || img1}
+                    img={product.image}
                     title={product.name}
                     description={product.description}
                     price={product.price}
