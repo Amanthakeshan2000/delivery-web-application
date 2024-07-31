@@ -55,18 +55,18 @@ const Dishes = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center lg:px-32 px-5 bg-gray-50">
+    <div className="min-h-screen flex flex-col justify-center items-center lg:px-32 px-1 bg-gray-50">
       <h1 className="text-4xl lg:text-5xl font-bold text-gray-800 py-24">
         {/* Optional: Display category names here */}
         {/* {categories.length > 0 ? categories.map(category => category.name).join(", ") : "Loading categories..."} */}
       </h1>
 
-      <div className="flex flex-col gap-16 lg:px-10 px-5">
+      <div className="flex flex-col gap-16 lg:px-1 px-0">
         {categories.map(category => (
           <div key={category.id} className="bg-white p-6 rounded-lg shadow-md mb-8 w-full lg:w-3/4 mx-auto">
-          <h2 className="text-2xl sm:text-4xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-4 text-center">
-  {category.name}
-</h2>
+          <h2 className="text-2xl sm:text-5xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-4 text-center">
+          {category.name}
+        </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {products[category.id] ? (
