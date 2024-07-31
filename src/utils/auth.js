@@ -12,7 +12,7 @@ const getAccessToken = async () => {
       userName: USERNAME,
       password: PASSWORD
     });
-    console.log(response.data.accessToken);
+    // console.log(response.data.accessToken);
     if (response.data && response.data.accessToken) {
       return response.data.accessToken;
       

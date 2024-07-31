@@ -5,23 +5,21 @@ import { AiOutlineMenuUnfold, AiOutlineClose } from "react-icons/ai";
 import { BiChevronDown } from "react-icons/bi";
 import SignIn from "./SignIn";
 import Register from "./Register";
-import getAccessToken from "../utils/auth";
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false);
   const [showSignIn, setShowSignIn] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [categories, setCategories] = useState([]);
-
+  
   useEffect(() => {
+    const token = sessionStorage.getItem("token"); // Retrieve token from session storage
+
+    if (!token) return; // Exit if token is not available
+
     const fetchCategories = async () => {
       try {
-        const token = await getAccessToken();
-        if (!token) {
-          throw new Error('Access token not available');
-        }
-
-        const response = await fetch(`/api/get-category?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923`, {
+        const response = await fetch(`https://checkmateapi20240716235602.azurewebsites.net/get-category?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923`, {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -39,7 +37,7 @@ const Navbar = () => {
     };
 
     fetchCategories();
-  }, []);
+  }, []); // Empty dependency array ensures this runs only once
 
   const handleMenuToggle = () => {
     setMenu(prevMenu => !prevMenu);
@@ -85,26 +83,24 @@ const Navbar = () => {
             </div>
 
             <ul className="absolute hidden space-y-0 group-hover:block bg-white border border-gray-300 rounded-lg p-5 shadow-lg transition-all duration-300 ease-in-out" style={{ width: '300px' }}>
-  {categories.length > 0 ? (
-    categories.map(category => (
-      <li key={category.id} className="hover:bg-blue-100 transition-colors duration-300 ease-in-out rounded-lg">
-        <Link
-          to={`dishes-${category.name}`}
-          spy={true}
-          smooth={true}
-          duration={500}
-          className="text-gray-800 hover:text-blue-600 transition-all cursor-pointer block px-4 py-2"
-        >
-          {category.name}
-        </Link>
-      </li>
-    ))
-  ) : (
-    <li className="text-gray-600">No categories found</li>
-  )}
-</ul>
-
-
+              {categories.length > 0 ? (
+                categories.map(category => (
+                  <li key={category.id} className="hover:bg-blue-100 transition-colors duration-300 ease-in-out rounded-lg">
+                    <Link
+                      to={`dishes-${category.name}`}
+                      spy={true}
+                      smooth={true}
+                      duration={500}
+                      className="text-gray-800 hover:text-blue-600 transition-all cursor-pointer block px-4 py-2"
+                    >
+                      {category.name}
+                    </Link>
+                  </li>
+                ))
+              ) : (
+                <li className="text-gray-600">No categories found</li>
+              )}
+            </ul>
           </div>
 
           <Link to="about" spy={true} smooth={true} duration={500} className="hover:text-brightColor transition-all cursor-pointer">
