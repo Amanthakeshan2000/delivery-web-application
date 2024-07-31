@@ -7,12 +7,15 @@ const Dishes = () => {
   const [products, setProducts] = useState({});
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchCategoriesAndProducts = async () => {
       try {
-        const token = await getAccessToken();
+        let token = localStorage.getItem('token');
         if (!token) {
-          throw new Error("Access token not available");
+          token = await getAccessToken();
+          if (token) localStorage.setItem('token', token);
         }
+
+        if (!token) throw new Error("Access token not available");
 
         const categoryResponse = await fetch(`https://checkmateapi20240716235602.azurewebsites.net/get-category?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923`, {
           headers: {
@@ -20,9 +23,7 @@ const Dishes = () => {
           },
         });
 
-        if (!categoryResponse.ok) {
-          throw new Error(`HTTP error! Status: ${categoryResponse.status}`);
-        }
+        if (!categoryResponse.ok) throw new Error(`HTTP error! Status: ${categoryResponse.status}`);
 
         const categoryData = await categoryResponse.json();
         setCategories(categoryData);
@@ -35,12 +36,10 @@ const Dishes = () => {
             },
           });
 
-          if (!productResponse.ok) {
-            throw new Error(`HTTP error! Status: ${productResponse.status}`);
-          }
+          if (!productResponse.ok) throw new Error(`HTTP error! Status: ${productResponse.status}`);
 
           const productData = await productResponse.json();
-          setProducts(prevProducts => ({
+          setProducts((prevProducts) => ({
             ...prevProducts,
             [category.id]: productData
           }));
@@ -50,26 +49,28 @@ const Dishes = () => {
       }
     };
 
-    fetchCategories();
+    fetchCategoriesAndProducts();
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center lg:px-32 px-1 bg-gray-50">
-      <h1 className="text-4xl lg:text-5xl font-bold text-gray-800 py-24">
-        {/* Optional: Display category names here */}
-        {/* {categories.length > 0 ? categories.map(category => category.name).join(", ") : "Loading categories..."} */}
+    <div className="min-h-screen flex flex-col bg-gray-50 py-10 px-4 lg:px-32">
+      <h1 className="text-4xl lg:text-5xl font-bold text-gray-800 mb-10 text-center">
+        Our Dishes
       </h1>
 
-      <div className="flex flex-col gap-16 lg:px-1 px-0">
-        {categories.map(category => (
-          <div key={category.id} className="bg-white p-6 rounded-lg shadow-md mb-8 w-full lg:w-3/4 mx-auto">
-            <h2 className="text-2xl sm:text-5xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-4 text-center">
+      <div className="flex flex-col gap-16">
+        {categories.map((category) => (
+          <div
+            key={category.id}
+            className="bg-white p-6 rounded-lg shadow-lg mb-8 mx-auto w-full lg:w-3/4"
+          >
+            <h2 className="text-2xl lg:text-4xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-4 text-center">
               {category.name}
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {products[category.id] ? (
-                products[category.id].map(product => (
+                products[category.id].map((product) => (
                   <DishesCard
                     key={product.id}
                     img={product.image}
@@ -79,7 +80,9 @@ const Dishes = () => {
                   />
                 ))
               ) : (
-                <p className="text-center text-gray-600 col-span-full">Loading products...</p>
+                <p className="text-center text-gray-600 col-span-full">
+                  Loading products...
+                </p>
               )}
             </div>
           </div>

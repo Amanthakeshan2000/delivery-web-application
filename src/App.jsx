@@ -1,37 +1,27 @@
-// src/App.jsx
 import React, { useState, useEffect, createContext, useContext } from "react";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
-import Menu from "./components/Menu";
-import Footer from "./components/Footer";
 import Dishes from "./components/Dishes";
 import Reviews from "./components/Review";
-import axios from 'axios';
+import Footer from "./components/Footer";
+import getAccessToken from "./utils/auth";
 
-// Create a Context for the authentication
+// Create a Context for authentication
 const AuthContext = createContext();
 
 const App = () => {
-  const [token, setToken] = useState(sessionStorage.getItem('token') || '');
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
 
   useEffect(() => {
     const fetchToken = async () => {
-      const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
-      const USERNAME = process.env.REACT_APP_USERNAME;
-      const PASSWORD = process.env.REACT_APP_PASSWORD;
-
       try {
-        const response = await axios.post(`${API_BASE_URL}/api/User/login`, {
-          userName: USERNAME,
-          password: PASSWORD
-        });
-
-        if (response.data && response.data.accessToken) {
-          sessionStorage.setItem('token', response.data.accessToken);
-          setToken(response.data.accessToken);
+        const accessToken = await getAccessToken();
+        if (accessToken) {
+          localStorage.setItem('token', accessToken);
+          setToken(accessToken);
         } else {
-          console.error('Access token not found in response:', response.data);
+          console.error('Access token not found');
         }
       } catch (error) {
         console.error('Error fetching access token:', error.message || error);
@@ -60,7 +50,6 @@ const App = () => {
           <div id="review">
             <Reviews />
           </div>
-          <br/><br/>
         </main>
         <Footer />
       </div>

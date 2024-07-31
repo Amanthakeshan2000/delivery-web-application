@@ -16,10 +16,13 @@ const Navbar = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const token = await getAccessToken();
+        let token = localStorage.getItem('token');
         if (!token) {
-          throw new Error('Access token not available');
+          token = await getAccessToken();
+          if (token) localStorage.setItem('token', token);
         }
+
+        if (!token) throw new Error('Access token not available');
 
         const response = await fetch(`/api/get-category?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923`, {
           headers: {
@@ -27,9 +30,7 @@ const Navbar = () => {
           }
         });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
         const data = await response.json();
         setCategories(data);
