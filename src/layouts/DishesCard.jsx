@@ -139,16 +139,17 @@ const DishesCard = (props) => {
             <p className="text-center">{props.description}</p>
           </div>
         </div>
-        <div className="p-4">
-  <div className="flex justify-between items-center">
-    <Button
-      title="Add"
-      className="w-auto bg-green-500 text-white hover:bg-green-800 transition-colors duration-300"
-      onClick={handleAddClick}
-    />
-    <h3 className="font-semibold text-lg text-gray-700 mt-2">RM {props.price}</h3>
-  </div>
+       
+        <div className="flex flex-col items-center">
+  <h3 className="font-semibold text-lg text-gray-700 mb-2">RM {props.price}</h3>
+  <Button
+    title="Add"
+    className="w-auto bg-green-500 text-white hover:bg-green-800 transition-colors duration-300"
+    onClick={handleAddClick}
+  />
 </div>
+
+
 
       </div>
       {isPopupVisible && (
