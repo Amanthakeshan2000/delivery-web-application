@@ -29,11 +29,11 @@ const Review = () => {
       <ReviewCard img={img} name="Amantha Keshan" />
       <ReviewCard img={img} name="Amantha Keshan" />
     </div>
-    <div className="row flex flex-col md:flex-row gap-5 mt-5">
+    {/* <div className="row flex flex-col md:flex-row gap-5 mt-5">
       <ReviewCard img={img} name="Amantha Keshan" />
       <ReviewCard img={img} name="Amantha Keshan" />
       <ReviewCard img={img} name="Amantha Keshan" />
-    </div>
+    </div> */}
   </div>
   );
 };
