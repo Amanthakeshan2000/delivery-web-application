@@ -152,6 +152,7 @@ const DishesCard = (props) => {
 
       {isPopupVisible && (
         <Popup
+        key={props.id}
           dish={{
             title: props.title,
             img: props.img,
@@ -193,6 +194,7 @@ const DishesCard = (props) => {
 
       {isCartPopupVisible && (
         <CartPopup
+        key={props.id}
           cartItems={cartItems}
           setCartItems={setCartItems}
           onClose={() => setIsCartPopupVisible(false)}

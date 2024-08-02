@@ -4,6 +4,7 @@ import axios from 'axios';
 const LOGIN_URL = 'https://checkmateapi20240716235602.azurewebsites.net/api/User/login';
 const REFRESH_URL = 'https://checkmateapi20240716235602.azurewebsites.net/api/User/refresh';
 const TOKEN_KEY = 'authToken';
+const ORGANIZATION = '1e7071f0-dacb-4a98-f264-08dcb066d923';
 
 // Get the current timestamp in milliseconds
 const getCurrentTimestamp = () => new Date().getTime();
@@ -43,7 +44,7 @@ async function generateToken() {
             password: 'Anubaba@123'
         });
         const { accessToken, refreshToken } = response.data;
-        const expirationTime = getCurrentTimestamp() + 10000; // Set a proper expiration time (e.g., 10 seconds here)
+        const expirationTime = getCurrentTimestamp() + 3600000; // 1 hour expiration
         setToken(accessToken, refreshToken, expirationTime);
         return accessToken;
     } catch (error) {
@@ -61,7 +62,7 @@ async function refreshToken() {
         const { refreshToken } = tokenData;
         const response = await axios.post(REFRESH_URL, { refreshToken });
         const { accessToken, refreshToken: newRefreshToken } = response.data;
-        const expirationTime = getCurrentTimestamp() + 10000; // Set a proper expiration time (e.g., 10 seconds here)
+        const expirationTime = getCurrentTimestamp() + 3600000; // 1 hour expiration
         setToken(accessToken, newRefreshToken, expirationTime);
         return accessToken;
     } catch (error) {
@@ -77,7 +78,6 @@ export const getValidToken = async () => {
 
     if (tokenData === null) {
         // No token available, generate a new one
-        console.log('One Time');
         return await generateToken();
     } else {
         if (isTokenExpired()) {
@@ -86,7 +86,6 @@ export const getValidToken = async () => {
                 return await refreshToken();
             } catch (error) {
                 // If refreshing fails, generate a new token
-                console.log('One Time');
                 return await generateToken();
             }
         } else {
@@ -95,3 +94,5 @@ export const getValidToken = async () => {
         }
     }
 };
+
+export { ORGANIZATION };

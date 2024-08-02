@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import DishesCard from "../layouts/DishesCard";
 import { useAuth } from "../App";
+import { ORGANIZATION } from "../utils/tokenUtils"; 
+
 
 const Dishes = () => {
   const [categories, setCategories] = useState([]);
@@ -20,7 +22,7 @@ const Dishes = () => {
 
       try {
         const categoryResponse = await fetch(
-          `https://checkmateapi20240716235602.azurewebsites.net/get-category?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923`,
+          `https://checkmateapi20240716235602.azurewebsites.net/get-category?Organization=${ORGANIZATION}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -41,7 +43,7 @@ const Dishes = () => {
         const productPromises = categoryData.map(async (category) => {
           try {
             const productResponse = await fetch(
-              `https://checkmateapi20240716235602.azurewebsites.net/get-productlist?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923&CategoryIndex=${category.id}`,
+              `https://checkmateapi20240716235602.azurewebsites.net/get-productlist?Organization=${ORGANIZATION}&CategoryIndex=${category.id}`, // Use ORGANIZATION constant
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
@@ -103,7 +105,7 @@ const Dishes = () => {
         ) : (
           categories.map((category) => (
             <div
-              key={category.id} // Unique key for category
+              key={category.id}
               className="bg-white p-6 rounded-lg shadow-lg mb-8 mx-auto w-full lg:w-3/4"
             >
               <h2 className="text-2xl lg:text-4xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-4 text-center">
@@ -114,7 +116,7 @@ const Dishes = () => {
                 {products[category.id] && products[category.id].length > 0 ? (
                   products[category.id].map((product) => (
                     <DishesCard
-                      key={product.id} // Unique key for each product
+                      key={product.id}
                       img={product.image}
                       title={product.name}
                       description={product.description}
