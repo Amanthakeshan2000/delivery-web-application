@@ -84,13 +84,13 @@ const Footer = () => {
         </div>
       </div>
       <div>
-        <p>
+       
           <p className=" text-center py-4">
             @copyright developed by
             <span className=" text-brightColor"> Techwire Lanka Pvt Ltd</span> |
             All rights reserved
           </p>
-        </p>
+       
       </div>
     </div>
   );

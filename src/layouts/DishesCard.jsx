@@ -31,6 +31,7 @@ const Popup = ({ dish, quantity, setQuantity, onClose, onAddToCart }) => {
         <p className="mb-4 text-center">{dish.description}</p>
         <div className="mb-4">
           <div className="flex flex-col space-y-3 mb-4 custom-radio">
+            {/* Example radio option, add more as needed */}
             <label className="flex items-center">
               <input
                 type="radio"
@@ -127,7 +128,7 @@ const DishesCard = (props) => {
 
   return (
     <>
-      <div className="w-full lg:w-150 p-6 bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 flex flex-col justify-between">
+      <div id={props.id} className="w-full lg:w-150 p-6 bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105 flex flex-col justify-between">
         <div className="flex-grow">
           <img
             className="w-full h-48 object-cover rounded-t-lg transition-transform duration-200 hover:scale-110"
@@ -139,19 +140,16 @@ const DishesCard = (props) => {
             <p className="text-center">{props.description}</p>
           </div>
         </div>
-       
         <div className="flex flex-col items-center">
-  <h3 className="font-semibold text-lg text-gray-700 mb-2">RM {props.price}</h3>
-  <Button
-    title="Add"
-    className="w-auto bg-green-500 text-white hover:bg-green-800 transition-colors duration-300"
-    onClick={handleAddClick}
-  />
-</div>
-
-
-
+          <h3 className="font-semibold text-lg text-gray-700 mb-2">RM {props.price}</h3>
+          <Button
+            title="Add"
+            className="w-auto bg-green-500 text-white hover:bg-green-800 transition-colors duration-300"
+            onClick={handleAddClick}
+          />
+        </div>
       </div>
+
       {isPopupVisible && (
         <Popup
           dish={{
@@ -166,14 +164,20 @@ const DishesCard = (props) => {
           onAddToCart={handleAddToCart}
         />
       )}
+
       {successMessage && (
         <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded-lg shadow-lg flex items-center">
           <span className="text-lg">&#10004;</span> {/* Check mark */}
           <span className="ml-2">{successMessage}</span>
         </div>
       )}
+
       {isNavbarVisible && (
-        <div className={`fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 flex justify-between items-center transition-transform duration-300 ${isNavbarVisible ? "translate-y-0" : "translate-y-full"}`}>
+        <div
+          className={`fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 flex justify-between items-center transition-transform duration-300 ${
+            isNavbarVisible ? "translate-y-0" : "translate-y-full"
+          }`}
+        >
           <div className="flex items-center space-x-4">
             <span>Items: {totalItems}</span>
             <span>Total: ${totalPrice}</span>
@@ -186,6 +190,7 @@ const DishesCard = (props) => {
           </button>
         </div>
       )}
+
       {isCartPopupVisible && (
         <CartPopup
           cartItems={cartItems}

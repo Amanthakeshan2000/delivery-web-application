@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DishesCard from "../layouts/DishesCard";
-import { getValidToken } from "../utils/tokenUtils"; // Adjust the path as needed
+import { useAuth } from "../App";
 
 const Dishes = () => {
   const [categories, setCategories] = useState([]);
@@ -8,12 +8,17 @@ const Dishes = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const { token } = useAuth();
+
   useEffect(() => {
     const fetchCategoriesAndProducts = async () => {
-      try {
-        const token = await getValidToken(); // Fetch a valid token
+      if (!token) {
+        setError("No token available.");
+        setLoading(false);
+        return;
+      }
 
-        // Fetch categories
+      try {
         const categoryResponse = await fetch(
           `https://checkmateapi20240716235602.azurewebsites.net/get-category?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923`,
           {
@@ -33,7 +38,6 @@ const Dishes = () => {
         const categoryData = await categoryResponse.json();
         setCategories(categoryData);
 
-        // Fetch products for each category
         const productPromises = categoryData.map(async (category) => {
           try {
             const productResponse = await fetch(
@@ -52,15 +56,15 @@ const Dishes = () => {
               throw new Error(`HTTP error! Status: ${productResponse.status}`);
             }
 
-            const productData = await productResponse.json();
+            const responseText = await productResponse.text();
+            const productData = responseText ? JSON.parse(responseText) : [];
             return { categoryId: category.id, products: productData };
           } catch (error) {
             console.error(`Error fetching products for category ${category.id}:`, error);
-            return { categoryId: category.id, products: [] }; // Return empty array on error
+            return { categoryId: category.id, products: [] };
           }
         });
 
-        // Process all product fetch promises
         const productDataArray = await Promise.all(productPromises);
         const productsMap = productDataArray.reduce((acc, { categoryId, products }) => {
           acc[categoryId] = products;
@@ -77,7 +81,7 @@ const Dishes = () => {
     };
 
     fetchCategoriesAndProducts();
-  }, []);
+  }, [token]);
 
   if (loading) {
     return <div className="text-center py-10">Loading dishes...</div>;
@@ -99,7 +103,7 @@ const Dishes = () => {
         ) : (
           categories.map((category) => (
             <div
-              key={category.id}
+              key={category.id} // Unique key for category
               className="bg-white p-6 rounded-lg shadow-lg mb-8 mx-auto w-full lg:w-3/4"
             >
               <h2 className="text-2xl lg:text-4xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-4 text-center">
@@ -110,7 +114,7 @@ const Dishes = () => {
                 {products[category.id] && products[category.id].length > 0 ? (
                   products[category.id].map((product) => (
                     <DishesCard
-                      key={product.id}
+                      key={product.id} // Unique key for each product
                       img={product.image}
                       title={product.name}
                       description={product.description}

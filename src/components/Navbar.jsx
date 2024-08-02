@@ -19,7 +19,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-       // let token = await getValidToken();
+         const token = await getValidToken();
         if (!token) throw new Error('Access token not available');
 
         const response = await fetch(`/api/get-category?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923&page=${page}&limit=6`, {

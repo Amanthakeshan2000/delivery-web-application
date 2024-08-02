@@ -12,11 +12,13 @@ const AuthContext = createContext();
 
 const App = () => {
   const [token, setToken] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchToken = async () => {
       try {
-        //const accessToken = await getValidToken();
+        const accessToken = await getValidToken();
         if (accessToken) {
           setToken(accessToken);
         } else {
@@ -24,11 +26,17 @@ const App = () => {
         }
       } catch (error) {
         console.error('Error fetching access token:', error.message || error);
+        setError(error.message || 'An error occurred');
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchToken();
   }, []);
+
+  if (loading) return <div className="text-center py-10">Loading...</div>;
+  if (error) return <div className="text-center text-red-500 py-10">Error: {error}</div>;
 
   return (
     <AuthContext.Provider value={{ token }}>
@@ -48,7 +56,7 @@ const App = () => {
             <Reviews />
           </section>
         </main>
-        <br/> <br/>
+        <br /> <br />
         <Footer />
       </div>
     </AuthContext.Provider>
@@ -58,55 +66,3 @@ const App = () => {
 export const useAuth = () => useContext(AuthContext);
 
 export default App;
-
-
-
-
-
-
-// App.jsx
-// import React, { useEffect, useState } from 'react';
-// import { getValidToken } from './utils/tokenUtils';
-
-// const App = () => {
-//   const [token, setToken] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     console.log("useEffect - Fetching Token");
-
-//     const fetchToken = async () => {
-//       try {
-//         const fetchedToken = await getValidToken();
-//         console.log("Token fetched:", fetchedToken);
-//         setToken(fetchedToken);
-//         setLoading(false);
-//       } catch (err) {
-//         console.error('Error fetching token:', err);
-//         setError(err);
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchToken();
-
-//     // Check and refresh the token every minute
-//     // const intervalId = setInterval(fetchToken, 10000);
-
-//     // Clean up the interval on component unmount
-//     return () => clearInterval(intervalId);
-//   }, []);
-
-//   if (loading) return <div>Loading...</div>;
-//   if (error) return <div>Error: {error.message}</div>;
-
-//   return (
-//     <div>
-//       <p>Current Token: {token}</p>
-//       {/* Add other components here */}
-//     </div>
-//   );
-// };
-
-// export default App;
