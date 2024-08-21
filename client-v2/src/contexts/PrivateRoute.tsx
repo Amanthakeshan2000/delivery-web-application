@@ -12,7 +12,7 @@ export const PrivateRoute = () => {
   }
 
   const { isSignedIn } = authContext;
-  console.log(isSignedIn);
+  // console.log(isSignedIn);
 
   if (!isSignedIn) {
     ReactToast({
@@ -33,7 +33,7 @@ export const PrivateRouteForAuth = () => {
   }
 
   const { isSignedIn } = authContext;
-  console.log(isSignedIn);
+  // console.log(isSignedIn);
 
   if (isSignedIn) {
     ReactToast({

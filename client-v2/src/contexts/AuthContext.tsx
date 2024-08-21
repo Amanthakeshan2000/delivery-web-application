@@ -1,6 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { User } from "../models/User";
 import { AuthContextProviderProps, AuthContextType } from "../utils/Props";
+import Cookies from "js-cookie";
+import {
+  userSignIn,
+  userSignUp,
+  validateAuthToken,
+} from "../api/authController";
+import {
+  validateUserLoginData,
+  validateUserRegisterData,
+} from "../utils/userValidations";
 
 // Create a context
 export const AuthContext = createContext<AuthContextType | undefined>(
@@ -13,11 +23,81 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const signIn = async (_user: User) => {};
+  useEffect(() => {
+    const accessToken = Cookies.get("accessToken");
+    const refreshToken = Cookies.get("refreshToken");
 
-  const signOut = () => {};
+    if (!accessToken || !refreshToken) return setIsSignedIn(false);
 
-  const signUp = async (_user: User) => {};
+    const validatedToken = validateAuthToken(accessToken!, refreshToken!);
+
+    if (validatedToken == null) {
+      setUser(undefined);
+      setIsSignedIn(false);
+      return;
+    }
+
+    setIsSignedIn(true);
+  }, []);
+
+  const signIn = async (_user: User) => {
+    if (validateUserLoginData(_user)) {
+      const userData = await userSignIn(_user);
+
+      if (!userData) {
+        setIsSignedIn(false);
+        setUser(undefined);
+        return {
+          status: false,
+          message: `Login Failed!`,
+        };
+      }
+
+      Cookies.set("accessToken", userData.token);
+      Cookies.set("refreshToken", userData.refreshToken);
+
+      setUser({
+        accessToken: userData.token,
+        refreshToken: userData.refreshToken,
+      });
+
+      setIsSignedIn(true);
+
+      return {
+        status: true,
+        message: `Login Successful!`,
+      };
+    }
+  };
+
+  const signOut = () => {
+    Cookies.remove(import.meta.env.ACCESS_TOKEN);
+    Cookies.remove(import.meta.env.REFRESH_TOKEN);
+    setIsSignedIn(false);
+    setUser(undefined);
+
+    return true;
+  };
+
+  const signUp = async (_user: User) => {
+    if (validateUserRegisterData(_user)) {
+      const userData = await userSignUp(_user);
+
+      if (!userData) {
+        setIsSignedIn(false);
+        setUser(undefined);
+        return {
+          status: false,
+          message: `Sign Up Failed!`,
+        };
+      }
+
+      return {
+        status: true,
+        message: `Sign Up Successful Please login!`,
+      };
+    }
+  };
 
   console.log(user);
   console.log(isSignedIn);

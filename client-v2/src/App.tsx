@@ -5,6 +5,7 @@ import { PrivateRoute, PrivateRouteForAuth } from "./contexts/PrivateRoute";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/register" element={<Register />} />
           </Route>
         </Routes>
+        <Toaster position="bottom-right" reverseOrder={false} />
       </BrowserRouter>
     </>
   );
