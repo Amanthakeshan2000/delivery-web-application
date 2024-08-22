@@ -8,7 +8,6 @@ import {
   USER_REGISTER,
 } from "./config";
 import { User } from "../models/User";
-import axios from "axios";
 
 export const isTokenExpired = async (token: string) => {
   if (!token) return true;
@@ -79,7 +78,7 @@ export const validateAuthToken = async (
 
 export const userSignIn = async (user: User) => {
   try {
-    const response = await axios.post(USER_LOGIN, {
+    const response = await axiosInstance.post(USER_LOGIN, {
       userName: user.username,
       password: user.password,
     });

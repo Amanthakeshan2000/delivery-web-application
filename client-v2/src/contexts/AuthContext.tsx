@@ -24,20 +24,32 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const accessToken = Cookies.get("accessToken");
-    const refreshToken = Cookies.get("refreshToken");
+    const validateToken = async () => {
+      const accessToken = Cookies.get("accessToken");
+      const refreshToken = Cookies.get("refreshToken");
 
-    if (!accessToken || !refreshToken) return setIsSignedIn(false);
+      if (!accessToken || !refreshToken) return setIsSignedIn(false);
 
-    const validatedToken = validateAuthToken(accessToken!, refreshToken!);
+      const validatedToken = await validateAuthToken(
+        accessToken!,
+        refreshToken!
+      );
 
-    if (validatedToken == null) {
-      setUser(undefined);
-      setIsSignedIn(false);
-      return;
-    }
+      if (validatedToken == null) {
+        setUser(undefined);
+        setIsSignedIn(false);
+        return;
+      }
 
-    setIsSignedIn(true);
+      setUser({
+        accessToken: validatedToken.token,
+        refreshToken: validatedToken.refreshToken,
+      });
+
+      setIsSignedIn(true);
+    };
+
+    validateToken();
   }, []);
 
   const signIn = async (_user: User) => {
