@@ -28,6 +28,7 @@ const Navbar = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [page, setPage] = useState<number>(1);
   const [hasMore, setHasMore] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLUListElement | null>(null);
 
   const { user } = authContext!;
@@ -36,6 +37,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
+      if (loading || !hasMore) return; // Prevent multiple fetches
+
+      setLoading(true);
+
       try {
         const response = await axiosInstance.get(
           createGetCategoryUrlWithPageLimit(ORGANIZATION, page.toString()),
@@ -46,16 +51,21 @@ const Navbar = () => {
           }
         );
 
-        if (!response.statusText)
-          throw new Error(`HTTP error! Status: ${response.status}`);
-
-        console.log(response.data);
-
         const data: Category[] = await response.data;
+
+        // Avoid duplicating categories
+        setCategories((prev) => {
+          const newCategories = data.filter(
+            (category) => !prev.some((item) => item.id === category.id)
+          );
+          return [...prev, ...newCategories];
+        });
+
         if (data.length < 6) setHasMore(false);
-        setCategories((prev) => [...prev, ...data]);
       } catch (error) {
         console.error("Error fetching categories:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -68,7 +78,7 @@ const Navbar = () => {
       dropdownRef.current.scrollTop + dropdownRef.current.clientHeight >=
         dropdownRef.current.scrollHeight
     ) {
-      if (hasMore) {
+      if (hasMore && !loading) {
         setPage((prev) => prev + 1);
       }
     }
