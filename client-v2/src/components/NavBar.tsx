@@ -6,7 +6,8 @@ import { BiChevronDown } from "react-icons/bi";
 import SignIn from "./SignIn";
 import Register from "./Register";
 import { AuthContext } from "../contexts/AuthContext";
-import { axiosInstance, GET_CATEGORY } from "../api/config";
+import { axiosInstance, ORGANIZATION } from "../api/config";
+import { createGetCategoryUrlWithPageLimit } from "../api/authController";
 
 interface Category {
   id: string;
@@ -37,7 +38,7 @@ const Navbar = () => {
     const fetchCategories = async () => {
       try {
         const response = await axiosInstance.get(
-          `${GET_CATEGORY}?Organization=1e7071f0-dacb-4a98-f264-08dcb066d923&page=${page}&limit=6`,
+          createGetCategoryUrlWithPageLimit(ORGANIZATION, page.toString()),
           {
             headers: {
               Authorization: `Bearer ${user?.accessToken}`,

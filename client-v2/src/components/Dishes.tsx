@@ -2,7 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import DishesCard from "../layouts/DishesCard";
 import { ORGANIZATION } from "../api/config";
 import { AuthContext } from "../contexts/AuthContext";
-import { axiosInstance, GET_CATEGORY, GET_PRODUCTS } from "../api/config";
+import { axiosInstance } from "../api/config";
+import { createGetCategoryUrl, getProductUrl } from "../api/authController";
 
 interface Category {
   id: string;
@@ -39,7 +40,7 @@ const Dishes = () => {
     const fetchCategoriesAndProducts = async () => {
       try {
         const categoryResponse = await axiosInstance.get<Category[]>(
-          `${GET_CATEGORY}?Organization=${ORGANIZATION}`,
+          createGetCategoryUrl(ORGANIZATION),
           {
             headers: {
               Authorization: `Bearer ${user?.accessToken}`,
@@ -53,7 +54,7 @@ const Dishes = () => {
           async (category: Category) => {
             try {
               const productResponse = await axiosInstance.get<Product[]>(
-                `${GET_PRODUCTS}?Organization=${ORGANIZATION}&CategoryIndex=${category.id}`,
+                getProductUrl(ORGANIZATION, category.id),
                 {
                   headers: {
                     Authorization: `Bearer ${user?.accessToken}`,

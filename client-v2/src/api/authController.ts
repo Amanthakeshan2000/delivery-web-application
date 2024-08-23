@@ -3,6 +3,8 @@ import { DecodedTokenProps } from "../utils/Props";
 import { jwtDecode } from "jwt-decode";
 import {
   axiosInstance,
+  GET_CATEGORY,
+  GET_PRODUCTS,
   USER_LOGIN,
   USER_REFRESH,
   USER_REGISTER,
@@ -109,3 +111,18 @@ export const userSignUp = async (user: User) => {
     return false;
   }
 };
+
+export const createGetCategoryUrlWithPageLimit = (
+  organization: string,
+  page: string
+) => {
+  return `${GET_CATEGORY}?Organization=${organization}&page=${page}&limit=6`;
+};
+
+export const createGetCategoryUrl = (organization: string) => {
+  return `${GET_CATEGORY}?Organization=${organization}`;
+};
+
+export const getProductUrl = (organization: string, categoryIndex: string) => {
+  return `${GET_PRODUCTS}?Organization=${organization}&CategoryIndex=${categoryIndex}`;
+}
