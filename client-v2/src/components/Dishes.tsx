@@ -4,6 +4,7 @@ import { ORGANIZATION } from "../api/config";
 import { AuthContext } from "../contexts/AuthContext";
 import { axiosInstance } from "../api/config";
 import { createGetCategoryUrl, getProductUrl } from "../api/authController";
+import { CustomLoadingPage } from "../pages/LoadingPage";
 
 interface Category {
   id: string;
@@ -98,7 +99,7 @@ const Dishes = () => {
   }, [user?.accessToken]);
 
   if (loading) {
-    return <div className="text-center py-10">Loading dishes...</div>;
+    return <CustomLoadingPage />;
   }
 
   if (error) {

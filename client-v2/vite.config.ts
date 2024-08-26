@@ -1,4 +1,4 @@
-import path from 'path';
+import path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
@@ -8,11 +8,17 @@ export default defineConfig({
   server: {
     port: 2000,
     open: true,
+    watch: {
+      usePolling: true,
+    },
   },
   resolve: {
     alias: {
       styles: path.resolve(__dirname, "./src/styles"),
       assets: path.resolve(__dirname, "./src/assets"),
     },
+  },
+  preview: {
+    port: 2000,
   },
 });

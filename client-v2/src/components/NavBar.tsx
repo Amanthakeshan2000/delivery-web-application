@@ -8,6 +8,7 @@ import Register from "./Register";
 import { AuthContext } from "../contexts/AuthContext";
 import { axiosInstance, ORGANIZATION } from "../api/config";
 import { createGetCategoryUrlWithPageLimit } from "../api/authController";
+import { useParams } from "react-router-dom";
 
 interface Category {
   id: string;
@@ -22,6 +23,8 @@ interface Category {
 const Navbar = () => {
   const authContext = useContext(AuthContext);
 
+  const params = useParams();
+
   const [menu, setMenu] = useState<boolean>(false);
   const [showSignIn, setShowSignIn] = useState<boolean>(false);
   const [showRegister, setShowRegister] = useState<boolean>(false);
@@ -32,8 +35,10 @@ const Navbar = () => {
   const dropdownRef = useRef<HTMLUListElement | null>(null);
 
   const { user } = authContext!;
+  const orgId: string = params.orgId!;
 
   console.log(user?.accessToken);
+  console.log(orgId);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -43,7 +48,7 @@ const Navbar = () => {
 
       try {
         const response = await axiosInstance.get(
-          createGetCategoryUrlWithPageLimit(ORGANIZATION, page.toString()),
+          createGetCategoryUrlWithPageLimit(orgId, page.toString()),
           {
             headers: {
               Authorization: `Bearer ${user?.accessToken}`,
@@ -192,7 +197,7 @@ const Navbar = () => {
             Reviews
           </Link>
 
-          <Button title="Sign In" onClick={toggleSignIn} />
+          <Button title="Sign In" onClick={toggleSignIn} className="hidden" />
         </nav>
 
         <div className="md:hidden flex items-center">
