@@ -6,7 +6,7 @@ import { BiChevronDown } from "react-icons/bi";
 import SignIn from "./SignIn";
 import Register from "./Register";
 import { AuthContext } from "../contexts/AuthContext";
-import { axiosInstance, ORGANIZATION } from "../api/config";
+import { axiosInstance } from "../api/config";
 import { createGetCategoryUrlWithPageLimit } from "../api/authController";
 import { useParams } from "react-router-dom";
 

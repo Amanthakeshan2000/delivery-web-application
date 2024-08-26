@@ -93,7 +93,8 @@ export const validateAuthToken = async (
   }
 };
 
-export const organizationDataLogin = async (user: User) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const organizationDataLogin = async (_user: User) => {
   try {
     const response = await axiosInstance.post(ORGANIZATION_DATA_LOGIN, {
       userName: ORGANIZATION_DATA_USERNAME,
