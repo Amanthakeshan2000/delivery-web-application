@@ -1,4 +1,11 @@
-FROM node:18.18.2-alpine3.18
+FROM node:20
+
+ENV VITE_BASEURL=https://checkmateapi20240716235602.azurewebsites.net/api/
+ENV VITE_ACCESS_TOKEN=accessToken
+ENV VITE_REFRESH_TOKEN=refreshToken
+ENV VITE_ORGANIZATION=1e7071f0-dacb-4a98-f264-08dcb066d923
+ENV VITE_ORGANIZATION_DATA_USERNAME=serendib@gmail.com
+ENV VITE_ORGANIZATION_DATA_PASSWORD=Anubaba@123
 
 # Set the working directory
 WORKDIR /app
@@ -10,7 +17,10 @@ COPY . .
 # Install dependencies
 RUN npm install -g pnpm
 RUN pnpm install
-RUN pnpm build
+RUN pnpm run build
+
+# RUN yarn
+# RUN yarn build
 
 # Expose the port on which the application will run
 EXPOSE 2000

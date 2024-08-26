@@ -6,11 +6,13 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: true,
     port: 2000,
-    open: true,
+    strictPort: true,
+    /* open: true,
     watch: {
       usePolling: true,
-    },
+    }, */
   },
   resolve: {
     alias: {
@@ -20,5 +22,6 @@ export default defineConfig({
   },
   preview: {
     port: 2000,
+    strictPort: true,
   },
 });
