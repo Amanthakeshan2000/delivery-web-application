@@ -1,0 +1,26 @@
+﻿name: Deploy to Azure Web App
+
+on:
+  push:
+    tags:
+      - stage-*
+
+jobs:
+  Deploy-to-Azure-Web-App:
+    name: Deploy to Azure Web App
+    runs-on: ubuntu-latest
+    steps:
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          # host: ${{ secrets.DIGITAL_OCEAN_HOST }}
+          host: 45.32.125.74
+          # username: ${{ secrets.DIGITAL_OCEAN_USERNAME }}
+          username: root
+          # password: ${{ secrets.DIGITAL_OCEAN_PASSWORD }}
+          password: D4$wY3bFRY.2bvL?
+          script: |
+            cd delivery-web-application/client-v2
+            docker compose down -v
+            git pull origin production
+            docker compose up -d
