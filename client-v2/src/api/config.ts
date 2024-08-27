@@ -1,6 +1,5 @@
 import axios from "axios";
 
-export const ORGANIZATION = "1e7071f0-dacb-4a98-f264-08dcb066d923";
 export const ORGANIZATION_DATA_USERNAME = import.meta.env.VITE_ORGANIZATION_DATA_USERNAME as string;
 export const ORGANIZATION_DATA_PASSWORD = import.meta.env.VITE_ORGANIZATION_DATA_PASSWORD as string;
 

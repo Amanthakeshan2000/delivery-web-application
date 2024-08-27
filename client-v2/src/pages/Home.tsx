@@ -14,7 +14,7 @@ const Home: FC = () => {
         <section id="home">
           <HomeComponent />
         </section>
-        <section id="about">
+        <section id="about" hidden>
           <About />
         </section>
         <section id="dishes">

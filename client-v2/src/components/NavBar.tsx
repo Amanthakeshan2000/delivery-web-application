@@ -1,3 +1,4 @@
+import img from "../assets/img/logo/1e7071f0-dacb-4a98-f264-08dcb066d923.webp";
 import { useState, useEffect, useRef, useContext } from "react";
 import { Link } from "react-scroll";
 import Button from "../layouts/Button";
@@ -107,7 +108,8 @@ const Navbar = () => {
     <div className="fixed w-full top-0 left-0 z-50 bg-white shadow-md">
       <div className="flex flex-row justify-between p-5 md:px-32 px-5">
         <div className="flex flex-row items-center cursor-pointer">
-          <h1 className="text-xl font-semibold">LOGO</h1>
+          <img src={img} alt="logo" className="w-16 h-auto" />
+          {/* <h1 className="text-2xl font-semibold ml-2">Serendib</h1> */}
         </div>
 
         <nav className="hidden md:flex flex-row items-center text-lg font-medium gap-8">

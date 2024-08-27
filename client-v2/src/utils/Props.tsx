@@ -1,6 +1,24 @@
 import { ReactNode } from "react";
 import { User } from "../models/User";
 
+interface Organization {
+  id: string;
+  name: string;
+  status: number;
+  userId: string;
+  image: string;
+  title: string;
+  description: string;
+  email: string;
+  address: string;
+  createUtcAt: string;
+}
+
+export interface OrganizationContextType {
+  organization: Organization | null;
+  setOrganization: React.Dispatch<React.SetStateAction<Organization | null>>;
+}
+
 export interface AuthContextType {
   user: User | undefined;
   setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
@@ -87,6 +105,7 @@ export interface DishesCardProps {
   img?: string;
   description?: string;
   price?: number;
+  productOptions: ProductOptionsProps[]; // Add this prop
 }
 
 // Define the type for a single cart item

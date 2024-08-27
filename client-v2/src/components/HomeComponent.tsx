@@ -34,7 +34,7 @@ const HomeComponent: FC = () => {
           THE BEST SRI LANKAN FOOD IN MALAYSIA
         </p>
         <div>
-          <Button title="Order Now" />
+          <Button title="Review Now" />
         </div>
       </div>
     </div>
