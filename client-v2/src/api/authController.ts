@@ -13,7 +13,7 @@ import {
 } from "./config";
 import { User } from "../models/User";
 
-export const isTokenExpired = async (token: string) => {
+export const isTokenAboutToExpired = async (token: string) => {
   if (!token) return true;
 
   const decodedToken = jwtDecode<DecodedTokenProps>(token);
@@ -23,6 +23,20 @@ export const isTokenExpired = async (token: string) => {
 
   if (currentTime >= expiryTime - refreshThreshold) {
     // Trigger refresh if token is about to expire in less than 1 minute
+    return true;
+  }
+
+  return false;
+};
+
+export const isTokenExpired = async (token: string) => {
+  if (!token) return true;
+
+  const decodedToken = jwtDecode<DecodedTokenProps>(token);
+  const expiryTime = decodedToken.exp * 1000;
+  const currentTime = Date.now();
+
+  if (currentTime >= expiryTime) {
     return true;
   }
 
@@ -77,6 +91,10 @@ export const validateAuthToken = async (
     }
 
     if (await isTokenExpired(accessToken)) {
+      return await organizationDataLogin(user);
+    }
+
+    if (await isTokenAboutToExpired(accessToken)) {
       return await getRefreshTokenForOrganizationData(
         accessToken,
         refreshToken

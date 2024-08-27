@@ -9,6 +9,7 @@ export const ORGANIZATION_DATA_REGISTER = "User/register";
 export const ORGANIZATION_DATA_REFRESH = "User/refresh";
 export const ORGANIZATION_DATA_GET_CATEGORY = "Product/get-category";
 export const ORGANIZATION_DATA_GET_PRODUCTS = "Product/get-productlist";
+export const ORGANIZATION_DATA_GET_PRODUCT_BY_ID = "Product/get-product";
 
 export const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASEURL,

@@ -67,12 +67,18 @@ export interface CartItem extends Dish {
   quantity: number;
 }
 
+interface ProductOptionsProps {
+  name: string;
+  price: number;
+}
+
 export interface PopupProps {
   dish: Dish;
   quantity: number;
   setQuantity: React.Dispatch<React.SetStateAction<number>>;
   onClose: () => void;
   onAddToCart: (dish: Dish, quantity: number) => void;
+  productOptions?: ProductOptionsProps[];
 }
 
 export interface DishesCardProps {

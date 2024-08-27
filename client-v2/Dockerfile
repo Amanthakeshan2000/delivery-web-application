@@ -17,7 +17,8 @@ COPY . .
 # Install dependencies
 RUN npm install -g pnpm
 RUN pnpm install
-RUN pnpm run build
+# RUN pnpm run build
+RUN pnpm run build-dev
 
 # RUN yarn
 # RUN yarn build
