@@ -307,6 +307,7 @@ const Navbar = () => {
             </Link>
 
             <Button
+              className="hidden"
               title="Sign In"
               onClick={() => {
                 handleMenuToggle();

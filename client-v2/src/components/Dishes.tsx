@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import DishesCard from "../layouts/DishesCard";
-// import { ORGANIZATION } from "../api/config";
 import { AuthContext } from "../contexts/AuthContext";
 import { axiosInstance } from "../api/config";
 import { createGetCategoryUrl, getProductUrl } from "../api/authController";

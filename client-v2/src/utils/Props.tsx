@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { User } from "../models/User";
 
-interface Organization {
+export interface Organization {
   id: string;
   name: string;
   status: number;
@@ -12,11 +12,16 @@ interface Organization {
   email: string;
   address: string;
   createUtcAt: string;
+  googleReview: string;
 }
 
 export interface OrganizationContextType {
   organization: Organization | null;
   setOrganization: React.Dispatch<React.SetStateAction<Organization | null>>;
+}
+
+export interface OrganizationContextProviderProps {
+  children: ReactNode;
 }
 
 export interface AuthContextType {
