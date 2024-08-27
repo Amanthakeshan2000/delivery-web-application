@@ -11,17 +11,14 @@ ENV VITE_ORGANIZATION_DATA_PASSWORD=Anubaba@123
 WORKDIR /app
 
 # Copy the application code to the container
-
 COPY . .
 
 # Install dependencies
 RUN npm install -g pnpm
 RUN pnpm install
-# RUN pnpm run build
-RUN pnpm run build-dev
 
-# RUN yarn
-# RUN yarn build
+# Build the application
+RUN pnpm run build-dev
 
 # Expose the port on which the application will run
 EXPOSE 2000
