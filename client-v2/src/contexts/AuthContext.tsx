@@ -136,9 +136,6 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     }
   };
 
-  console.log(user);
-  console.log(isSignedIn);
-
   return (
     <AuthContext.Provider
       value={{
