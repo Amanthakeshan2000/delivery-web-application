@@ -20,6 +20,8 @@ const HomeComponent: FC = () => {
     delay: 500,
   });
 
+  console.log(organization);
+
   return (
     <div className="min-h-screen flex justify-center items-center lg:px-32 px-5 bg-hero-image bg-cover bg-no-repeat">
       <div className="w-full lg:w-2/3 space-y-5 text-center">
