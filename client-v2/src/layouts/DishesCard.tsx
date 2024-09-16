@@ -5,10 +5,6 @@ import "../styles/animate-slide-up.css";
 import "../styles/custom-styles.css";
 import "../styles/navbar-popup.css";
 import { CartItem, Dish, DishesCardProps, PopupProps } from "../utils/Props";
-import {
-  axiosInstance,
-  ORGANIZATION_DATA_GET_PRODUCT_BY_ID,
-} from "../api/config";
 
 // Popup Component
 const Popup: React.FC<PopupProps> = ({
@@ -24,9 +20,6 @@ const Popup: React.FC<PopupProps> = ({
   const handleRadioChange = (value: string) => {
     setSelectedOption(value);
   };
-
-  /* console.log(productOptions);
-  console.log(dish.id); */
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -153,8 +146,6 @@ const DishesCard: React.FC<DishesCardProps> = (props) => {
   const totalPrice = cartItems
     .reduce((acc, item) => acc + item.price * item.quantity, 0)
     .toFixed(2);
-
-  console.log(props);
 
   return (
     <>

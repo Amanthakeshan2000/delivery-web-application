@@ -38,7 +38,6 @@ const Navbar = () => {
   const { user } = authContext!;
   const orgId: string = params.orgId!;
 
-  console.log(user?.accessToken);
   console.log(orgId);
 
   useEffect(() => {

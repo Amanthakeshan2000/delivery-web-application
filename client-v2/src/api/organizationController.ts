@@ -12,7 +12,7 @@ export const getOrganization = async (org: string, token: string) => {
       }
     );
 
-    if (!response.statusText)
+    if (response.status != 200)
       throw new Error(`HTTP error! Status: ${response.status}`);
 
     return response.data;
